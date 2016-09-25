@@ -1,3 +1,5 @@
+(function () {
+'use strict';
 let assert = require('assert');
 let hello = require('./public/main').hello;
 let filter = require('./public/main').filter;
@@ -18,3 +20,4 @@ assert.equal(plural(13), "13 раз!" );
 
 //TODO: Кейсы для функции filter
 // assert.equal(filter('КЕК'), '***');
+})
