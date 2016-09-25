@@ -9,10 +9,10 @@ assert.equal(hello('Test'), 'Привет, Test');
 //assert.equal(filter('azazaKEKazaza'), 'azaza***azaza');
 
 
-assert.equal(plural(0), "0 раз" );
-assert.equal(plural(1), "1 раз" );
-assert.equal(plural(2), "0 раза" );
-assert.equal(plural(13), "13 раз" );
+assert.equal(plural(0), "0 раз!" );
+assert.equal(plural(1), "1 раз!" );
+assert.equal(plural(2), "0 раза!" );
+assert.equal(plural(13), "13 раз!" );
 
 
 
