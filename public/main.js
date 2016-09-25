@@ -3,7 +3,24 @@
 let userData = {};
 
 function filter (str, rules = ['КЕК']) {
-	return `//TODO: реализовать filter`;
+	var posA = 0;
+	var posB = 0; // начало строки rules
+	var result = "";
+	while (posB !== -1) {
+		posB = str.indexOf(rules, posA)
+		console.log(posB);
+		if (posB !== -1) {
+			result = result + str.substring(posA, posB);
+			for (var i = 0; i < str.length; i++) {
+				result = result + '*'; // добавим нужное количетсво звездочек
+			}
+			posA = posB + rules.length;
+		}
+		console.log(result);
+ 	}
+ 	result = result + str.substring(posA);
+
+	return result;`//TODO: реализовать filter`;
 }
 
 function onLogin (form, block) {
@@ -75,4 +92,30 @@ function hello(text) {
 if (typeof exports === 'object') {
 	exports.hello = hello;
 	exports.filter = filter;
+    exports.plural = plural;
+}
+
+
+function plural (n) {
+	if (12 <= n && n <= 14)
+		return (n + ' раз!');
+	if (n % 10 === 2 || n % 10 === 3 || n % 10 === 4)
+		return (n + ' раза!');
+	return (n + ' раз!');
+}
+
+function onSubmit(form) {
+	let data = {
+		user: form.elements['user'].value,
+		email: form.elements['email'].value
+	};
+
+	let result = request('/users', data);
+
+	if (result === '100') {
+		form.hidden = true;
+		window.helloWorld.innerHTML = hello(data.user);
+	}
+
+	console.log(data, result);
 }
