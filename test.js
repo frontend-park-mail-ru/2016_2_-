@@ -11,7 +11,7 @@ assert.equal(hello('Test'), 'Привет, Test');
 
 assert.equal(plural(0), "0 раз!" );
 assert.equal(plural(1), "1 раз!" );
-assert.equal(plural(2), "0 раза!" );
+assert.equal(plural(2), "2 раза!" );
 assert.equal(plural(13), "13 раз!" );
 
 
