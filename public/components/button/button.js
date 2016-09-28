@@ -1,35 +1,11 @@
 (function () {
 	'use strict';
-<<<<<<< HEAD
-=======
 
->>>>>>> upstream/master
 	class Button {
 		constructor (options) {
 			this.text = options.text;
 			this.attrs = options.attrs || [];
 			this.el = document.createElement('button');
-<<<<<<< HEAD
-			this.el.innerHTML = options.text;
-<<<<<<< HEAD
-			this.el.style.backgroundColor = options.backgroundColor;
-			this.setAttrs(options.attrs);
-		}
-
-		setAttrs(attrs) {
-			Object.keys(attr).forEach(name => {
-				
-			})
-		}
-	}
-})();
-=======
-			this.el.style.backgroundColor = options.backgroundColor || '';
-			this.el.classList.add('button');
-
-			this.setAttrs(options.attrs);
-=======
->>>>>>> remotes/valera/master
 		}
 
 		setAttrs (attrs) {
@@ -54,4 +30,3 @@
 	window.Button = Button;
 
 })();
->>>>>>> upstream/master
