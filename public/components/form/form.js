@@ -29,7 +29,7 @@
             let {fields = []} = this.data;
 
             return fields.map(field => {
-                return `<input type="text" name="${field.name}">`
+                return `<input type="${field.type}" name="${field.name}" placeholder="${field.name}">`
             }).join(' ')
         }
 
@@ -55,8 +55,9 @@
         _installControls() {
             let {controls = []} = this.data;
 
+
             controls.forEach(data => {
-                let control = new Button({text: data.text}).render();
+                let control = new Button({attrs: data.attrs, text: data.text}).render();
                 this.el.querySelector('.js-controls').appendChild(control.el);
             });
         }

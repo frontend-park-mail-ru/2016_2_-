@@ -1,4 +1,17 @@
 'use strict'
+
+function validate(data) {
+    return true;
+}
+
+function clickOnSignUp()
+{
+    let signInPage = document.querySelector('.js-login');
+    signInPage.hidden = true;
+    alert(123);
+    window.SIGN_UP();
+}
+
 function createSignIn() {
     let Form = window.Form;
     // находим элемент входа
@@ -13,6 +26,7 @@ function createSignIn() {
                 {
                     name: 'Логин',
                     type: 'text',
+                    placeholder: "azaza",
                     label: 'Логин'
                 },
                 {
@@ -23,22 +37,24 @@ function createSignIn() {
             ],
             controls: [
                 {
-                    text: 'Войти',
+                    text: 'SignIn',
                     attrs: {
                         type: 'submit'
+                        //onclick: "document.querySelector('.js-login').hidden = true"
                     }
                 },
                 {
-                    text: 'Зарегестрироваться',
+                    text: 'SignUp',
                     attrs: {
-                        type: 'submit'
+                        type: 'click',
+                        onclick: " window.SIGN_UP()"
                     }
                 }
             ]
         }
     });
 
-    // вещаем обработчик нажатия
+    // вещаем обработчик submit
     signInForm.on('submit', event => {
         event.preventDefault();
         let formData = signInForm.getFormData();
@@ -53,15 +69,19 @@ function createSignIn() {
             // сообщения об ошибках
         }
     });
+
+   /* signInForm.on('click', event => {
+        //event.preventDefault();
+        console.log("ON_CLICL");
+    });*/
+
+
     signInPage.hidden = false;
     signInPage.appendChild(signInForm.el);
 }
 
 (function () {
     // тестовый вариант
-    function validate(data) {
-        return true;
-    }
 
     //
 
