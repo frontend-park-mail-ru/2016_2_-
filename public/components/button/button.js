@@ -6,7 +6,10 @@
 >>>>>>> upstream/master
 	class Button {
 		constructor (options) {
+			this.text = options.text;
+			this.attrs = options.attrs || [];
 			this.el = document.createElement('button');
+<<<<<<< HEAD
 			this.el.innerHTML = options.text;
 <<<<<<< HEAD
 			this.el.style.backgroundColor = options.backgroundColor;
@@ -25,6 +28,8 @@
 			this.el.classList.add('button');
 
 			this.setAttrs(options.attrs);
+=======
+>>>>>>> remotes/valera/master
 		}
 
 		setAttrs (attrs) {
@@ -33,8 +38,15 @@
 			})
 		}
 
-		static include (btn, el) {
-			el.appendChild(btn.el);
+		render () {
+			this.el.innerHTML = this.text;
+			this.el.classList.add('button');
+			this.setAttrs(this.attrs);
+			return this;
+		}
+		
+		toString () {
+			return this.el.outerHTML;
 		}
 	}
 

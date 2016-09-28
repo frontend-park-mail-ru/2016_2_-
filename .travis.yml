@@ -4,5 +4,12 @@ node_js:
 deploy:
   provider: heroku
   api_key:
+<<<<<<< HEAD
     secure: 7c359666-7122-4864-b696-232bc4e0eda5
   app: tron-2016
+=======
+    secure: cVawdepolYNg/jzUy3PYUWYKRgy+kg09bSrsBZIKAkIQ8wFF2i0HSiXNV9mjzyuD+/HrKERznmGxSKsUckNRH1sXou6MGrb8Rw+b71V60GkybujloA09NtYxfNXKfPVUx31xnq25TwJ5MuAziNZ8ORAzaUeJicpHsMSf3lpBtDHoJYfJzgoDx+l6Mi7kE7Y4kkhp0d3fC8avyDjiQ8eokEfCGt1lzK6Jr47uYkBOe6W6AA0Ev5WgkPjYACLeRTWrgt1g2cpLzY/jnUW0/guB4VkWsjoFnVlMbqcG9vSY0xEMIa17+YV3DaTAV4K6iIXNtrbKvcOgKBap/S+wF9QdWYABZTcjzZ/NVLQJu0lx63k9c5CJpyzYzp6NgWrHl+x9lns9DI5JFXAqke14zEPblW2fzapysw4lFcp/5cD0h85NUb+WQo5fWW2dKEeI9CBo9FfmjC57r99zEGxf2VOYr+xjw/z+VoLRH2QuVERTd/hs0rmywYAoRhcrQzESPdXP6CeNNUWJHj91gSQqSqt/ZVLb1VdvgZTfhpKGYNKaO0Gre+kHL4ZQNCnEdhRfT/OD5MA4vRIfpAepqJkqRStl2SSDlw7FXwJLnE9eUCFpbddByBTH0bEuVkxXJtbWWGr9Fdl1+Glgft+iYdafQMLbs1xnI/qdpFutMSgZnkhZbWQ=
+  app: mytestf
+  on:
+    repo: dkutre/sample
+>>>>>>> remotes/valera/master
