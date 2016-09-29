@@ -26,7 +26,6 @@
 		}
 	}
 
-	//export
 	window.Button = Button;
 
 })();
