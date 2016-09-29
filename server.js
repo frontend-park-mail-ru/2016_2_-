@@ -1,7 +1,7 @@
 'use strict'
 let express = require('express');
 let parser = require('body-parser');
-let app = express();
+let app = express;
 let technoDoc = require('techno-gendoc');
 let path = require('path');
 

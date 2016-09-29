@@ -59,12 +59,6 @@ function createSignUp() {
     }
   });
 
-  /* signInForm.on('click', event => {
-   //event.preventDefault();
-   console.log("ON_CLICL");
-   });*/
-
-
   signUpPage.hidden = false;
   signUpPage.appendChild(signUpForm.el);
 }
