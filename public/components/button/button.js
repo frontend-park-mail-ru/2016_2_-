@@ -25,7 +25,7 @@
 			return this.el.outerHTML;
 		}
 	}
-
+        //export
 	window.Button = Button;
 
 })();
