@@ -4,8 +4,14 @@
 
   function filter(str) {
     let rules = window.rules;
+    rules = rules.map(rule=>{
+      return {
+        regexp : new RegExp(`\\b${rule}\\b`,'g'),
+        length: rule.length
+      };
+    })
     rules.forEach(rule=> {
-      str = str.replace(rules, (new Array(rule.length + 1)).join('*'))
+      str = str.replace(rule.regexp, (new Array(rule.length + 1)).join('*'))
     });
     return (str);
   }

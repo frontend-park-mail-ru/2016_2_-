@@ -119,10 +119,7 @@
         <option value="$PROJECT_DIR$/public/main.js" />
         <option value="$PROJECT_DIR$/test.js" />
         <option value="$PROJECT_DIR$/.gitignore" />
-<<<<<<< HEAD
-=======
         <option value="$PROJECT_DIR$/.travis.yml" />
->>>>>>> remotes/valera/master
       </list>
     </option>
   </component>
