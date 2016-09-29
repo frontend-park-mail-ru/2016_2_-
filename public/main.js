@@ -1,13 +1,42 @@
 (function () {
   'use strict';
-  /*function plural(n) {
-    if (12 <= n && n <= 14)
-      return (n + ' раз!');
-    if (n % 10 === 2 || n % 10 === 3 || n % 10 === 4)
-      return (n + ' раза!');
-    return (n + ' раз!');
-  }*/
 
+
+  function filter(str) {
+    let rules = window.rules;
+    rules.forEach(rule=> {
+      str = str.replace(rules, (new Array(rule.length + 1)).join('*'))
+    });
+    return (str);
+  }
+
+  function plural(n) {
+    switch (n) {
+      case 0:
+        return 'Здравствуй, дух';
+      case 1:
+        return 'Рады приветствовать на нашем курсе!';
+      case 2:
+        return 'Кликай дальше!! Еще осталось 13 раз(а)';
+      case 13:
+        return 'Кликай дальше!! Еще осталось 2 раз(а)';
+      case 15:
+        return '01001000 01101001 00101100 00100000 01100010 01110010 01101111';
+      case 100:
+        return '01001000 01101001 00101100 00100000 01100010 01110010 01101111';
+    }
+  }
+
+  function hello(text) {
+    return 'Привет, ' + text;
+  }
+
+
+  if (typeof exports === 'object') {
+    exports.hello = hello;
+    exports.plural = plural;
+    exports.filter = filter;
+  }
   if (typeof window === 'object') {
     window.SIGN_IN();
   }
