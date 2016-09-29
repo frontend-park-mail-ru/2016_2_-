@@ -5,7 +5,7 @@
   function filter(str) {
     let rules = window.rules;
     rules.forEach(rule=> {
-      str = str.replace(rules, (new Array(rule.length + 1)).join('*'))
+      str = str.replace(rules, new Array(rule.length + 1).join('*'))
     });
     return (str);
   }
@@ -38,6 +38,6 @@
     exports.filter = filter;
   }
   if (typeof window === 'object') {
-    window.SIGN_IN();
+    window.signIn();
   }
 })();

@@ -1,20 +1,21 @@
 'use strict';
 
 function validate(data) {
-    if (3 > data.user.length || data.user.length > 12)
+    if (3 > data.user.length || data.user.length > 12) {
         return {name: 'user', result: false};
-    if (data.password.length < 6)
+    }
+    if (data.password.length < 6) {
         return {name: 'password', result: false};
+    }
     return {result: true};
 }
 
-function clickOnSignUp()
-{
+function clickOnSignUp() {
     let signInPage = document.querySelector('.js-login');
     signInPage.hidden = true;
     document.querySelector('.mainElem').hidden = true;
    // alert(123);
-    window.SIGN_UP();
+    window.signUp();
 }
 
 function createSignIn() {
@@ -31,7 +32,6 @@ function createSignIn() {
                 {
                     name: 'user',
                     type: 'text',
-                   // placeholder: "azaza",
                     label: 'Логин'
                 },
                 {
@@ -45,7 +45,6 @@ function createSignIn() {
                     text: 'SignIn',
                     attrs: {
                         type: 'submit'
-                        //onclick: "document.querySelector('.js-login').hidden = true"
                     }
                 },
                 {
@@ -73,8 +72,7 @@ function createSignIn() {
             mainElem.hidden = false;
             console.log("Login_Okay");
         } else {
-            //let badInput = this.el.querySelector("input[name=user]");
-            //badInput.bgColor = "#ff0000";
+
             console.log("Login_false");
             // сообщения об ошибках
         }
@@ -92,6 +90,6 @@ function createSignIn() {
 
 
     // exports
-    window.SIGN_IN = createSignIn;
+    window.signIn = createSignIn;
 })();
 

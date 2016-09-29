@@ -36,7 +36,7 @@ app.post('/users', (req, res) => {
 // TODO: вернуть количество обращений
 });
 
-/*
+
 app.get('/api/messages', function (req, res) {
 	res.send([
 		technoDoc.mock(require('./api/scheme/Message')),
@@ -44,7 +44,7 @@ app.get('/api/messages', function (req, res) {
 		technoDoc.mock(require('./api/scheme/Message')),
 		technoDoc.mock(require('./api/scheme/Message'))
 	])
-});*/
+});
 
 app.listen(process.env.PORT || 3001, () => {
 	console.log(`App started on port ${process.env.PORT || 3001}`);

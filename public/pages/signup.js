@@ -13,7 +13,7 @@ function createSignUp() {
   let signUpForm = new Form({
     el: document.createElement('div'),
     data: {
-      title: 'Регистрация kek',
+      title: 'Регистрация',
       fields: [
         {
           name: 'email',
@@ -65,7 +65,7 @@ function createSignUp() {
 
 (function () {
   //exports
-  window.SIGN_UP = createSignUp;
+  window.signUp = createSignUp;
 })();
 /**
  * Created by valera on 29.09.16.
