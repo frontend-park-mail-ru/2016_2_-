@@ -11,7 +11,7 @@
       };
     })
     rules.forEach(rule=> {
-      str = str.replace(rules, (new Array(rule.length + 1)).join('*'))
+      str = str.replace(rule.regexp, (new Array(rule.length + 1)).join('*'));
     });
     return str;
   }
