@@ -29,7 +29,7 @@
             let {fields = []} = this.data;
 
             return fields.map(field => {
-                return `<input type="${field.type}" name="${field.name}" placeholder="${field.name}">`
+                return `<input type="${field.type}"  name="${field.name}" placeholder="${field.name}">`
             }).join(' ')
         }
 
@@ -39,9 +39,9 @@
         _updateHtml() {
             this.el.innerHTML = `
 				<form>
-					<h1>${this.data.title}</h1>
+					<h1>${this.data.title} </h1>
 					<div>
-						${this._getFields()}
+						${this._getFields()} 
 					</div>
 					<div class="js-controls">
 					</div>

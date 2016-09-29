@@ -1,7 +1,11 @@
-'use strict'
+'use strict';
 
 function validate(data) {
-    return true;
+    if (3 > data.user.length || data.user.length > 12)
+        return {name: 'user', result: false};
+    if (data.password.length < 6)
+        return {name: 'password', result: false};
+    return {result: true};
 }
 
 function clickOnSignUp()
@@ -22,16 +26,16 @@ function createSignIn() {
     let signInForm = new Form({
         el: document.createElement('div'),
         data: {
-            title: 'Вход kek',
+            title: 'Вход',
             fields: [
                 {
-                    name: 'Логин',
+                    name: 'user',
                     type: 'text',
-                    placeholder: "azaza",
+                   // placeholder: "azaza",
                     label: 'Логин'
                 },
                 {
-                    name: 'Пароль',
+                    name: 'password',
                     type: 'password',
                     label: 'Пароль'
                 }
@@ -47,7 +51,7 @@ function createSignIn() {
                 {
                     text: 'SignUp',
                     attrs: {
-                        type: 'click',
+                        type: 'button',
                         onclick: "clickOnSignUp()"
                     }
                 }
@@ -59,22 +63,22 @@ function createSignIn() {
     signInForm.on('submit', event => {
         event.preventDefault();
         let formData = signInForm.getFormData();
+        let dataCheck = validate(formData);
         // валидицая
-        if (validate(formData)) {
+        if (dataCheck.result === true) {
+            // скрываем форму логина
             signInPage.hidden = true;
             let mainElem = document.querySelector('.mainElem');
+            // показываем основную страницу
             mainElem.hidden = false;
             console.log("Login_Okay");
         } else {
+            //let badInput = this.el.querySelector("input[name=user]");
+            //badInput.bgColor = "#ff0000";
             console.log("Login_false");
             // сообщения об ошибках
         }
     });
-
-   /* signInForm.on('click', event => {
-        //event.preventDefault();
-        console.log("ON_CLICL");
-    });*/
 
 
     signInPage.hidden = false;
