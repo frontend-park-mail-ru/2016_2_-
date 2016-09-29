@@ -7,7 +7,7 @@ let plural = require('./public/main').plural;
 
 
 global.window =  {
-  rules: ['Backend']
+	rules: ['Backend']
 }
 
 assert.equal(hello('Test'), 'Привет, Test');

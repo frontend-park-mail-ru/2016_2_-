@@ -13,7 +13,7 @@
 
 	<div class="js-login" hidden="hidden">
 	</div>
-	<div class="js-signUp" hidden="hidden">
+	<div class="js-singUp" hidden="hidden">
 	</div>
 	<div class="mainElem" hidden="hidden">
 		<p> Ты залогинился! Ура!</p>
@@ -23,7 +23,6 @@
 	<script src="/components/button/button.js"></script>
 	<script src="/components/form/form.js"></script>
 	<script src="/pages/signin.js"></script>
-	<script src="/pages/signup.js"></script>
 	<script src="/libs/technolibs/index.js"></script>
 	<script src="main.js"></script>
 </body>
