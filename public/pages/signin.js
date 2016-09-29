@@ -8,7 +8,8 @@ function clickOnSignUp()
 {
     let signInPage = document.querySelector('.js-login');
     signInPage.hidden = true;
-    alert(123);
+    document.querySelector('.mainElem').hidden = true;
+   // alert(123);
     window.SIGN_UP();
 }
 
@@ -47,7 +48,7 @@ function createSignIn() {
                     text: 'SignUp',
                     attrs: {
                         type: 'click',
-                        onclick: " window.SIGN_UP()"
+                        onclick: "clickOnSignUp()"
                     }
                 }
             ]
