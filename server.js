@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 let express = require('express');
 let parser = require('body-parser');
 let app = express;

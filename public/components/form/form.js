@@ -30,7 +30,7 @@
 
             return fields.map(field => {
                 return `<input type="${field.type}"  name="${field.name}" placeholder="${field.name}">`
-            }).join(' ')
+            }).join(' ');
         }
 
         /**

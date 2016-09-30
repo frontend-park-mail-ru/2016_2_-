@@ -10,7 +10,7 @@
         length: rule.length
       };
     })
-    rules.forEach(rule=> {
+    rules.forEach(rule => {
       str = str.replace(rule.regexp, (new Array(rule.length + 1)).join('*'));
     });
     return str;
