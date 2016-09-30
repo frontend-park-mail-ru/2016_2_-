@@ -66,9 +66,8 @@ function createSignIn() {
         if (dataCheck.result === true) {
             // скрываем форму логина
             signInPage.hidden = true;
-            let mainElem = document.querySelector('.mainElem');
+            document.querySelector('.mainElem').hidden = false;
             // показываем основную страницу
-            mainElem.hidden = false;
             console.log("Login_Okay");
         } else {
 
