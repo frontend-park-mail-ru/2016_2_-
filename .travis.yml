@@ -1,0 +1,10 @@
+language: node_js
+node_js:
+- 6
+deploy:
+  provider: heroku
+  api_key:
+    secure: f715a3d2-ff7d-45c6-87cd-dd724d845e24
+  app: tronmbot
+  on:
+    repo: dkutre/2016_2_MBOT

@@ -1,0 +1,6 @@
+node_modules/
+public/api
+npm-debug.log
+/.idea/*
+
+
