@@ -1,4 +1,3 @@
-//(function () {
 'use strict';
 let assert = require('assert');
 let hello = require('./public/main').hello;
@@ -25,4 +24,3 @@ assert.equal(filter('Backend frontend'), '******* frontend');
 assert.equal(filter('frontend Backend'), 'frontend *******');
 assert.equal(filter('IMNOTBackend'), 'IMNOTBackend');
 assert.equal(filter('Backend Backend'), '******* *******');
-//})

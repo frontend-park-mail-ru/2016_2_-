@@ -13,8 +13,7 @@ function validate(data) {
 function clickOnSignUp() {
     let signInPage = document.querySelector('.js-login');
     signInPage.hidden = true;
-    //document.querySelector('.mainElem').hidden = true;
-   // alert(123);
+    document.querySelector('.mainElem').hidden = true;
     window.signUp();
 }
 
