@@ -26,7 +26,7 @@
             let {fields = []} = this.data;
 
             return fields.map(field => {
-                return `<input type="${field.type}"  name="${field.name}" placeholder="${field.name}">`
+                return `<input required type="${field.type}"  name="${field.name}" placeholder="${field.name}">`
             }).join(' ');
         }
 

@@ -82,9 +82,6 @@ function createSignIn() {
 }
 
 (function () {
-    // тестовый вариант
-
-    //
 
 
     // exports
