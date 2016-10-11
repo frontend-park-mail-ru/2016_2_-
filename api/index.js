@@ -7,7 +7,11 @@ module.exports = {
 	},
 	"basePath": "/api",
 	"schemes": ["http"],
+<<<<<<< HEAD
    	"host": "http://localhost:3001",
+=======
+	"host": "http://localhost:3000",
+>>>>>>> sample/lesson-5
 
 	paths: {
 		'/messages': require('./resources/messages'),
@@ -21,4 +25,4 @@ module.exports = {
 		User: require('./scheme/User'),
 	}
 
-}
+};
