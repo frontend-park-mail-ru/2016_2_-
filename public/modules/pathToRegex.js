@@ -17,7 +17,6 @@
 
 
 		return function (path) {
-
 			let keys = [];
 			let check = parts.every((regexp, step) => {
 				let tmp = regexp.exec(path);

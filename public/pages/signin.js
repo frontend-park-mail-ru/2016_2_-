@@ -24,7 +24,6 @@ function createSignIn() {
 
     // создаем форму входа
     let signInForm = new Form({
-        el: document.createElement('div'),
         data: {
             title: 'Вход',
             fields: [

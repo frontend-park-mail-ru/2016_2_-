@@ -3,7 +3,6 @@
 
 	let Route = window.Route;
 
-
 	/** Класс роутера */
 	class Router {
 		/**

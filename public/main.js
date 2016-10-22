@@ -1,11 +1,12 @@
 (function () {
 
 	const Router = window.Router;
-	const ChatView = window.ChatView;
-	const MainView = window.MainView;
+	const GameView = window.GameView;
+	const LoginView = window.LoginView;
+	const ScoreBoardView = window.ScoreBoardView;
+	const SignupView = window.SignupView;
 
-
-
+/*
   function filter(str) {
     let rules = window.rules;
     rules = rules.map(rule=>{
@@ -13,7 +14,7 @@
         regexp : new RegExp(`\\b${rule}\\b`,'g'),
         length: rule.length
       };
-    })
+    });
     rules.forEach(rule=>str = str.replace(rule.regexp, (new Array(rule.length + 1)).join('*')));
     return str;
   }
@@ -45,15 +46,18 @@
     exports.plural = plural;
     exports.filter = filter;
   }
-  if (typeof window === 'object') {
-    window.signIn();
+ */  if (typeof window === 'object') {
+    //window.signIn();
 
     // TIP: роуты нужно указывать от наиболее специфичного к наименее специфичному
     // З.Ы. чтобы более ранние роуты не были префиксами более поздних ;]
 
-    (new Router)
-      .addRoute('/chat', ChatView)
-      .addRoute('/', MainView)
+
+    window.router = (new Router)
+      .addRoute('/game', GameView)
+			.addRoute('/score', ScoreBoardView)
+			.addRoute('/signup', SignupView)
+      .addRoute('/', LoginView)
       .start();
 
   }

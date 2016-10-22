@@ -1,13 +1,16 @@
 <fest:template xmlns:fest="http://fest.mail.ru" context_name="data">
 	<form>
+		<fest:attributes>
+			<fest:attribute name="class"><fest:value>data.class</fest:value></fest:attribute>
+		</fest:attributes>
 		<h1>
 			<fest:value>data.title</fest:value>
 		</h1>
 		<div>
 			<fest:for iterate="data.fields" index="i" value="field">
-				<input type="text" name="{field.name}" placeholder="{field.placeholder}"/>
+				<input class="{data.class}__input{field.name}" type="text" required='' name="{field.name}" placeholder="{field.placeholder}"/>
 			</fest:for>
 		</div>
-		<div class="js-controls"></div>
+		<div class="{data.class}__js-controls"></div>
 	</form>
 </fest:template>

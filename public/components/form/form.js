@@ -2,46 +2,46 @@
 	'use strict';
 
 	// import
-	let Button = window.Button;
+	const Block = window.Block;
+	const Button = window.Button;
 
-	class Form {
+	class Form extends Block {
 
 		/**
 		 * Конструктор класса Form
 		 */
 		constructor(options = {data: {}}) {
-			this.data = options.data;
-			this.el = options.el;
+			super('form');
 
+			console.log(options);
+			this.template = window.fest['form.tmpl'];
+			console.log(window.fest);
+			this.data = options.data;
+			this._el = options.el;
+			//this.setAttrs({class: 'abc'});
 			this.render();
 		}
 
+		/**
+		 * Обновляем HTML
+		 */
 		render() {
-			this._updateHtml()
+			this._updateHtml();
 			this._installControls();
 		}
 
-
-		_getFields() {
-			let {fields = []} = this.data;
-
-			return fields.map(field => {
-				return `<input required type="${field.type}"  name="${field.name}" placeholder="${field.name}">`
-			}).join(' ');
+		/**
+		 * Обнуляем форму
+		 */
+		reset() {
+			this._el.querySelector('form').reset();
 		}
 
-
+		/**
+		 * Обновить html компонента
+		 */
 		_updateHtml() {
-			this.el.innerHTML = `
-				<form>
-					<h1>${this.data.title} </h1>
-					<div>
-						${this._getFields()} 
-					</div>
-					<div class="js-controls">
-					</div>
-				<form>
-			`;
+			this._el.innerHTML = this.template(this.data);
 		}
 
 		/**
@@ -49,21 +49,13 @@
 		 */
 		_installControls() {
 			let {controls = []} = this.data;
-
-
 			controls.forEach(data => {
+				//data.class = '${this.data.class}__${this.text}'; why dont work???
+				data.attrs.class = this.data.class + '__js-controls__' + data.text;
 				let control = new Button({attrs: data.attrs, text: data.text}).render();
-				this.el.querySelector('.js-controls').appendChild(control.el);
+				//                    '.${data.class}__js-controls'
+				this._el.querySelector("." + this.data.class + "__js-controls").appendChild(control._get());
 			});
-		}
-
-		/**
-		 * Подписка на событие
-		 * @param {string} type - имя события
-		 * @param {function} callback - коллбек
-		 */
-		on(type, callback) {
-			this.el.addEventListener(type, callback);
 		}
 
 		/**
@@ -71,7 +63,7 @@
 		 * @return {object}
 		 */
 		getFormData() {
-			let form = this.el.querySelector('form');
+			let form = this._el.querySelector('form');
 			let elements = form.elements;
 			let fields = {};
 
@@ -90,6 +82,7 @@
 		}
 
 	}
+
 	//export
 	window.Form = Form;
-}());
+})();

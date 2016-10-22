@@ -7,12 +7,10 @@ let path = require('path');
 
 let technolibs = require('technolibs');
 
-<<<<<<< HEAD
-app.use('/', express.static('public', {maxAge: 1}));
-=======
+
 app.use('/', express.static('public', { maxAge: 1 }));
 app.use('/chat', express.static('public', {maxAge: 1}));
->>>>>>> sample/lesson-5
+
 technoDoc.generate(require('./api'), 'public');
 
 app.use(parser.json());
@@ -23,14 +21,12 @@ app.get('/api/session', (req, res) => {
   res.send(technoDoc.mock(require('./api/scheme/Session')))
 });
 
-<<<<<<< HEAD
-=======
+
 app.post('/api/session', (req, res) => {
 	res.send(technoDoc.mock(require('./api/scheme/Session')))
 });
 
 
->>>>>>> sample/lesson-5
 app.post('/api/messages', (req, res) => {
   technolibs.publish(req.body).then(body => res.json(req.body));
 });
