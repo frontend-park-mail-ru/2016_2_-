@@ -1,64 +1,90 @@
 (function () {
 
-	const Router = window.Router;
-	const GameView = window.GameView;
-	const LoginView = window.LoginView;
-	const ScoreBoardView = window.ScoreBoardView;
-	const SignupView = window.SignupView;
-
-/*
-  function filter(str) {
-    let rules = window.rules;
-    rules = rules.map(rule=>{
-      return {
-        regexp : new RegExp(`\\b${rule}\\b`,'g'),
-        length: rule.length
-      };
-    });
-    rules.forEach(rule=>str = str.replace(rule.regexp, (new Array(rule.length + 1)).join('*')));
-    return str;
-  }
-
-  function plural(n) {
-    switch (n) {
-      case 0:
-        return 'Здравствуй, дух';
-      case 1:
-        return 'Рады приветствовать на нашем курсе!';
-      case 2:
-        return 'Кликай дальше!! Еще осталось 13 раз(а)';
-      case 13:
-        return 'Кликай дальше!! Еще осталось 2 раз(а)';
-      case 15:
-        return '01001000 01101001 00101100 00100000 01100010 01110010 01101111';
-      case 100:
-        return '01001000 01101001 00101100 00100000 01100010 01110010 01101111';
-    }
-  }
-
-  function hello(text) {
-    return 'Привет, ' + text;
-  }
+  const Router = window.Router;
+  const GameView = window.GameView;
+  const LoginView = window.LoginView;
+  const ScoreBoardView = window.ScoreBoardView;
+  const SignupView = window.SignupView;
 
 
-  if (typeof exports === 'object') {
-    exports.hello = hello;
-    exports.plural = plural;
-    exports.filter = filter;
-  }
- */  if (typeof window === 'object') {
+  const Model = window.Model;
+
+
+  /*
+   function filter(str) {
+   let rules = window.rules;
+   rules = rules.map(rule=>{
+   return {
+   regexp : new RegExp(`\\b${rule}\\b`,'g'),
+   length: rule.length
+   };
+   });
+   rules.forEach(rule=>str = str.replace(rule.regexp, (new Array(rule.length + 1)).join('*')));
+   return str;
+   }
+
+   function plural(n) {
+   switch (n) {
+   case 0:
+   return 'Здравствуй, дух';
+   case 1:
+   return 'Рады приветствовать на нашем курсе!';
+   case 2:
+   return 'Кликай дальше!! Еще осталось 13 раз(а)';
+   case 13:
+   return 'Кликай дальше!! Еще осталось 2 раз(а)';
+   case 15:
+   return '01001000 01101001 00101100 00100000 01100010 01110010 01101111';
+   case 100:
+   return '01001000 01101001 00101100 00100000 01100010 01110010 01101111';
+   }
+   }
+
+   function hello(text) {
+   return 'Привет, ' + text;
+   }
+
+
+   if (typeof exports === 'object') {
+   exports.hello = hello;
+   exports.plural = plural;
+   exports.filter = filter;
+   }
+   */
+  if (typeof window === 'object') {
     //window.signIn();
-
+    /*
+     let model = new Model({
+     a: 1,
+     b: 'abc',
+     c: {name: 'kek'}
+     });
+     console.log(model); */
     // TIP: роуты нужно указывать от наиболее специфичного к наименее специфичному
     // З.Ы. чтобы более ранние роуты не были префиксами более поздних ;]
+    /*
+     let model = {};
+     model.attr = {abc: 'kek', obj: {a:1}};
+     console.log(model);*/
+/*
+    const Input = window.Input;
+    let input = new Input({
+        class: 'myinput',
+        type: 'email',
+        required: 'true',
+        name: 'username',
+        placeholder: 'enter your name'
+    });
 
+    document.querySelector('body').appendChild(input._el);
+    console.log(input); */
 
-    window.router = (new Router)
-      .addRoute('/game', GameView)
-			.addRoute('/score', ScoreBoardView)
-			.addRoute('/signup', SignupView)
-      .addRoute('/', LoginView)
-      .start();
+     window.router = (new Router)
+     .addRoute('/game', GameView)
+     .addRoute('/score', ScoreBoardView)
+     .addRoute('/signup', SignupView)
+     .addRoute('/', LoginView)
+     .start();
 
   }
 })();

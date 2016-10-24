@@ -1,8 +1,11 @@
-(function () {
+(function
+() {
   'use strict';
 
   const View = window.View;
   const Form = window.Form;
+  const User = window.UserModel;
+  const Session = window.SessionModel;
 
   function validate(data) {
     if (2 > data.user.length || data.user.length > 12) {
@@ -18,11 +21,13 @@
   class LoginView extends View {
     constructor(options = {}) {
       super(options);
+      this.class = 'js-login';
+                           // '.${options.name}' || .js-login
       this._el = document.querySelector('.js-login');
       console.log(this._el);
       this.hide();
       this.options = options;
-      //this.render(options);
+      this.render(options);
       // TODO: дописать реализацию
 
     }
@@ -37,12 +42,10 @@
     }
 
     render(options) {
-
-
       this._component = new Form({
         el: this._el,
         data: {
-          class: 'formLogin',
+          class: this.class + '__formLogin',
           title: 'Login',
           fields: [
             {name: 'user', placeholder: 'enter mail', type: 'text'},
@@ -72,20 +75,21 @@
         let formData = this._component.getFormData();
         let dataCheck = validate(formData);
         if (dataCheck.result === true) {
-          this.router.go('/game');
-          console.log("Login_Okay");
+          this.user = new User(dataCheck);
+          this.user.save();
+          this.session = new Session(this.user);
+          if (this.session.login()) {
+            this.router.go('/game');
+            console.log("Login_Okay");
+          } else {
+            alert('не удалось залогиниться');
+          }
         } else {
           console.log("Login_false");
         }
       });
-
-
-      //this._el.appendChild(form._get());
     }
 
-    /*init(options = {}) {
-     // TODO: дописать реализацию
-     }*/
   }
 
 

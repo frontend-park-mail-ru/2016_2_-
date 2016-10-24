@@ -6,11 +6,7 @@
 		<h1>
 			<fest:value>data.title</fest:value>
 		</h1>
-		<div>
-			<fest:for iterate="data.fields" index="i" value="field">
-				<input class="{data.class}__input{field.name}" type="text" required='' name="{field.name}" placeholder="{field.placeholder}"/>
-			</fest:for>
-		</div>
+		<div class="{data.class}__js-inputs"></div>
 		<div class="{data.class}__js-controls"></div>
 	</form>
 </fest:template>

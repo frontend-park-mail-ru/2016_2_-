@@ -55,8 +55,8 @@
         });
     }
 
-    send(method, data) {
-      const url = this.url(data.id);
+    send(method, data, url) {
+      //const url = this.url(data.id);
 
       return new Promise((resolve, reject) => {
         let xhr = new XMLHttpRequest();
@@ -68,7 +68,7 @@
             if (xhr.status === 200) {
               resolve(xhr.responseText);
             } else {
-              reject();
+              reject({code: xhr.status, text: xhr.responseText});
             }
           }
         };

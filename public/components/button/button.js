@@ -5,16 +5,17 @@
 
 	class Button extends Block {
 
-		constructor (options) {
-			super('button', options);
+		constructor (options, el) {
+			super('div', options);
 			this.text = options.text;
+			this.template = window.fest['button.tmpl'];
 			this.attrs = options.attrs || [];
+			this.render();
 		}
 
 
-		render () {
-			this._el.innerHTML = this.text;
-			this.setAttrs(this.attrs);
+		render() {
+			this._el.innerHTML = this.template(this._options);
 			return this;
 		}
 	}

@@ -3,8 +3,11 @@
 
   class Block {
     constructor(name, options = {}) {
-      this._el = document.createElement(name);
-      this.setAttrs(options.attrs);
+      if (name) {
+        console.log('AZAZAZA' + name);
+        this._el = document.createElement(name);
+        this.setAttrs(options.attrs);
+      }
       this._options = options;
     }
 

@@ -1,88 +1,99 @@
 (function () {
-	'use strict';
+  'use strict';
 
-	// import
-	const Block = window.Block;
-	const Button = window.Button;
+  // import
+  const Block = window.Block;
+  const Button = window.Button;
+  const Input = window.Input;
 
-	class Form extends Block {
+  class Form extends Block {
 
-		/**
-		 * Конструктор класса Form
-		 */
-		constructor(options = {data: {}}) {
-			super('form');
+    /**
+     * Конструктор класса Form
+     */
+    constructor(options = {data: {}}) {
+      super('form', options);
 
-			console.log(options);
-			this.template = window.fest['form.tmpl'];
-			console.log(window.fest);
-			this.data = options.data;
-			this._el = options.el;
-			//this.setAttrs({class: 'abc'});
-			this.render();
-		}
+      console.log(options);
+      this.template = window.fest['form.tmpl'];
+      this.data = options.data;
+      this._el = options.el;
+      this.render();
+    }
 
-		/**
-		 * Обновляем HTML
-		 */
-		render() {
-			this._updateHtml();
-			this._installControls();
-		}
+    /**
+     * Обновляем HTML
+     */
+    render() {
+      this._updateHtml();
+      this._installControls();
+      this._installInputs();
+    }
 
-		/**
-		 * Обнуляем форму
-		 */
-		reset() {
-			this._el.querySelector('form').reset();
-		}
+    /**
+     * Обнуляем форму
+     */
+    reset() {
+      this._el.querySelector('form').reset();
+    }
 
-		/**
-		 * Обновить html компонента
-		 */
-		_updateHtml() {
-			this._el.innerHTML = this.template(this.data);
-		}
+    /**
+     * Обновить html компонента
+     */
+    _updateHtml() {
 
-		/**
-		 * Вставить управляющие элементы в форму
-		 */
-		_installControls() {
-			let {controls = []} = this.data;
-			controls.forEach(data => {
-				//data.class = '${this.data.class}__${this.text}'; why dont work???
-				data.attrs.class = this.data.class + '__js-controls__' + data.text;
-				let control = new Button({attrs: data.attrs, text: data.text}).render();
-				//                    '.${data.class}__js-controls'
-				this._el.querySelector("." + this.data.class + "__js-controls").appendChild(control._get());
-			});
-		}
+      this._el.innerHTML = this.template(this._options.data);
+    }
 
-		/**
-		 * Взять данные формы
-		 * @return {object}
-		 */
-		getFormData() {
-			let form = this._el.querySelector('form');
-			let elements = form.elements;
-			let fields = {};
+    _installInputs() {
+      let {fields = []} = this.data;
+      fields.forEach(field => {
+        field.class = this.data.class + '__js-inputs__' + field.name;
+        let input = new Input(field);
+        this._el.querySelector('.' + this.data.class + '__js-inputs').appendChild(input._get());
+      })
+    }
 
-			Object.keys(elements).forEach(element => {
-				let name = elements[element].name;
-				let value = elements[element].value;
 
-				if (!name) {
-					return;
-				}
+    /**
+     * Вставить управляющие элементы в форму
+     */
+    _installControls() {
+      let {controls = []} = this.data;
+      controls.forEach(data => {
+        //data.class = '${this.data.class}__${this.text}'; why dont work???
+        data.attrs.class = this.data.class + '__js-controls__' + data.text;
+        let control = new Button(data, this._el.query);
+        console.log(this._el.querySelector("." + this.data.class + "__js-controls"));
+        this._el.querySelector("." + this.data.class + "__js-controls").appendChild(control._get());
+      });
+    }
 
-				fields[name] = value;
-			});
+    /**
+     * Взять данные формы
+     * @return {object}
+     */
+    getFormData() {
+      let form = this._el.querySelector('form');
+      let elements = form.elements;
+      let fields = {};
 
-			return fields;
-		}
+      Object.keys(elements).forEach(element => {
+        let name = elements[element].name;
+        let value = elements[element].value;
 
-	}
+        if (!name) {
+          return;
+        }
 
-	//export
-	window.Form = Form;
+        fields[name] = value;
+      });
+
+      return fields;
+    }
+
+  }
+
+  //export
+  window.Form = Form;
 })();
