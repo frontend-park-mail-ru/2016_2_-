@@ -1,5 +1,5 @@
 (function
-() {
+  () {
   'use strict';
 
   const View = window.View;
@@ -22,12 +22,11 @@
     constructor(options = {}) {
       super(options);
       this.class = 'js-login';
-                           // '.${options.name}' || .js-login
-      this._el = document.querySelector('.js-login');
-      console.log(this._el);
+      // '.${options.name}' || .js-login
+      this._el = document.querySelector('.' + this.class);
       this.hide();
       this.options = options;
-      this.render(options);
+     // this.render(options);
       // TODO: дописать реализацию
 
     }
@@ -37,56 +36,63 @@
       this.render(this.options);
     }
 
-    clickOnSignUp() {
-      this.router.go('/signup');
+    render(options) {
+      this._createComponents();
+      this._initListeners();
     }
 
-    render(options) {
-      this._component = new Form({
-        el: this._el,
-        data: {
-          class: this.class + '__formLogin',
-          title: 'Login',
-          fields: [
-            {name: 'user', placeholder: 'enter username', type: 'text'},
-            {name: 'password', placeholder: 'enter password', type: 'password'},
-          ],
-          controls: [
-            {
-              text: 'SignIn',
-              attrs: {
-                type: 'submit'
-              }
-            },
-            {
-              text: 'SignUp',
-              attrs: {
-                type: 'button',
-                onclick: 'this.clickOnSignUp.bind(this)'
-              }
-            }
-          ]
-        }
-      });
-
-
+    _initListeners() {
       this._component.on('submit', event => {
         event.preventDefault();
         let formData = this._component.getFormData();
         let dataCheck = validate(formData);
-        if (dataCheck.result === true) {
+        if (dataCheck) {
           this.user = new User(dataCheck);
-          //this.user.save(); пока нет java-серва, считаем что логин удался
+          //this.user.fetch() - загрузиться с сервера
           this.session = new Session(this.user);
           this.router.go('/game');
           /* if (this.session.login()) {
-            this.router.go('/game');
-            console.log("Login_Okay");
-          } else {
-            alert('не удалось залогиниться');
-          }*/
+           this.router.go('/game');
+           console.log("Login_Okay");
+           } else {
+           alert('не удалось залогиниться');
+           }*/
         } else {
           console.log("Login_false");
+        }
+      });
+
+      this._component.addEventListenerOnChild('click', this.class + '__formlogin__js-controls__signup', event => {
+        event.preventDefault();
+        this.router.go('/signup');
+      });
+    }
+
+    _createComponents() {
+      this._component = new Form({
+        el: this._el,
+        data: {
+          class: this.class + '__formlogin',
+          title: 'Login',
+          fields: [
+            {name: 'user', placeholder: 'enter username', type: 'text', required: 'true'},
+            {name: 'password', placeholder: 'enter password', type: 'password'},
+          ],
+          controls: [
+            {
+              text: 'signin',
+              attrs: {
+                type: 'submit',
+                name: 'aaa'
+              }
+            },
+            {
+              text: 'signup',
+              attrs: {
+                type: 'button'
+              }
+            }
+          ]
         }
       });
     }

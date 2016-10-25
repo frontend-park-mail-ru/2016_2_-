@@ -9,6 +9,10 @@
       super(attributes);
     }
 
+    fetch() {
+      //todo написать загрузку юзера по имени и паролю
+    }
+
   }
 
   window.UserModel = User;

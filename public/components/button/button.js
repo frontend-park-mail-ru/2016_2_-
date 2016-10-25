@@ -6,7 +6,8 @@
 	class Button extends Block {
 
 		constructor (options, el) {
-			super('div', options);
+			super('div', {});
+			this._options = options;
 			this.text = options.text;
 			this.template = window.fest['button.tmpl'];
 			this.attrs = options.attrs || [];

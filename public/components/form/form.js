@@ -14,7 +14,6 @@
     constructor(options = {data: {}}) {
       super('form', options);
 
-      console.log(options);
       this.template = window.fest['form.tmpl'];
       this.data = options.data;
       this._el = options.el;
@@ -54,6 +53,13 @@
       })
     }
 
+    /**
+     * Вешает событие на вложенный блок/элемент в форме
+     */
+
+    addEventListenerOnChild(event, childClass, handler) {
+      this._el.querySelector('.' + childClass).addEventListener(event, handler);
+    }
 
     /**
      * Вставить управляющие элементы в форму
@@ -64,7 +70,6 @@
         //data.class = '${this.data.class}__${this.text}'; why dont work???
         data.attrs.class = this.data.class + '__js-controls__' + data.text;
         let control = new Button(data, this._el.query);
-        console.log(this._el.querySelector("." + this.data.class + "__js-controls"));
         this._el.querySelector("." + this.data.class + "__js-controls").appendChild(control._get());
       });
     }
