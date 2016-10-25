@@ -3,7 +3,9 @@
   class Model {
 
     constructor(attributes) {
-      this.attributes = Object.assign({}, this.defaults, this._clean(attributes));
+      if (attributes) {
+        this.attributes = Object.assign({}, this.defaults, this._clean(attributes));
+      }
     }
 
     get baseUrl() {
@@ -29,23 +31,11 @@
     }
 
     fetch() {
-      return this.send('GET', { id: this.attributes.id })
-        .then(data => JSON.parse(data))
-        .then(json => {
-          this.attributes = json;
-          return this.attributes;
-        });
+
     }
 
     save() {
-      const method = this.attributes.id ? 'PUT' : 'POST';
 
-      return this.send(method, this.attributes)
-        .then((data => JSON.parse(data)))
-        .then(json => {
-          this.attributes.id = json.name;
-          return this.attributes;
-        });
     }
 
     remove() {

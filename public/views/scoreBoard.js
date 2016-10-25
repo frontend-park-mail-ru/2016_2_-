@@ -2,17 +2,7 @@
   'use strict';
 
   const View = window.View;
-  const Form = window.Form;
 
-  function validate(data) {
-    if (3 > data.user.length || data.user.length > 12) {
-      return {name: 'user', result: false};
-    }
-    if (data.password.length < 6) {
-      return {name: 'password', result: false};
-    }
-    return {result: true};
-  }
 
   class ScoreBoardView extends View {
     constructor(options = {}) {

@@ -51,40 +51,14 @@
    exports.filter = filter;
    }
    */
+
   if (typeof window === 'object') {
-    //window.signIn();
-    /*
-     let model = new Model({
-     a: 1,
-     b: 'abc',
-     c: {name: 'kek'}
-     });
-     console.log(model); */
-    // TIP: роуты нужно указывать от наиболее специфичного к наименее специфичному
-    // З.Ы. чтобы более ранние роуты не были префиксами более поздних ;]
-    /*
-     let model = {};
-     model.attr = {abc: 'kek', obj: {a:1}};
-     console.log(model);*/
-/*
-    const Input = window.Input;
-    let input = new Input({
-        class: 'myinput',
-        type: 'email',
-        required: 'true',
-        name: 'username',
-        placeholder: 'enter your name'
-    });
-
-    document.querySelector('body').appendChild(input._el);
-    console.log(input); */
-
-     window.router = (new Router)
-     .addRoute('/game', GameView)
-     .addRoute('/score', ScoreBoardView)
-     .addRoute('/signup', SignupView)
-     .addRoute('/', LoginView)
-     .start();
-
+    window.router = (new Router)
+      .addRoute('/game', GameView)
+      .addRoute('/score', ScoreBoardView)
+      .addRoute('/signup', SignupView)
+      .addRoute('/', LoginView)
+      .start();
   }
+
 })();

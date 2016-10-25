@@ -48,7 +48,7 @@
           class: this.class + '__formLogin',
           title: 'Login',
           fields: [
-            {name: 'user', placeholder: 'enter mail', type: 'text'},
+            {name: 'user', placeholder: 'enter username', type: 'text'},
             {name: 'password', placeholder: 'enter password', type: 'password'},
           ],
           controls: [
@@ -76,14 +76,15 @@
         let dataCheck = validate(formData);
         if (dataCheck.result === true) {
           this.user = new User(dataCheck);
-          this.user.save();
+          //this.user.save(); пока нет java-серва, считаем что логин удался
           this.session = new Session(this.user);
-          if (this.session.login()) {
+          this.router.go('/game');
+          /* if (this.session.login()) {
             this.router.go('/game');
             console.log("Login_Okay");
           } else {
             alert('не удалось залогиниться');
-          }
+          }*/
         } else {
           console.log("Login_false");
         }

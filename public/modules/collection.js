@@ -3,9 +3,34 @@
 
   class Collection {
 
-    constructor(attributes) {
-      this.attributes = attributes;
-      this.models = attributes.models || [];
+    constructor(attrs) {
+      this.comparator = attrs.comparator;
+      this.models = attrs.models || [];
+      this._sort();
+    }
+
+    find(model) {
+      for (elem in this.models) {
+        if (model === elem) {
+          return true;
+        }
+      }
+    }
+
+    getById(id) {
+      if (id > 0 && id < this.models.length) {
+        return this.models[id];
+      } else {
+        return {error: 'invalid index'}
+      }
+    }
+
+    disableSort() {
+      this.enableSort = false;
+    }
+
+    _sort() {
+      this.models.sort(this.comparator);
     }
 
     saveAll() {
@@ -14,8 +39,17 @@
       }
     }
 
-    push_back(model) {
+    removeAll() {
+      for (let model in this.models) {
+        model.remove();
+      }
+    }
+
+    push_back(model, sort = true) {
       this.models.push(model);
+      if (sort) {
+        this._sort();
+      }
       return true;
     }
 
@@ -23,13 +57,16 @@
       return this.models.pop();
     }
 
-    shiht(model) {
-      this.models.shift(models);
+    unshift(model, sort) {
+      this.models.unshift(model);
+      if (sort) {
+        this._sort();
+      }
       return true;
     }
 
-    unshift() {
-      return this.models.unshift();
+    shift() {
+      return this.models.shift();
     }
 
     fetch() {
@@ -40,4 +77,5 @@
   }
 
 
+  window.Collection = Collection;
 })();
