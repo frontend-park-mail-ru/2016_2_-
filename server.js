@@ -13,6 +13,10 @@ app.use('/game', express.static('public', {maxAge: 1}));
 app.use('/signup', express.static('public', {maxAge: 1}));
 app.use('/score', express.static('public', {maxAge: 1}));
 
+/*
+app.use('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public/index.html'));
+}); */
 
 technoDoc.generate(require('./api'), 'public');
 

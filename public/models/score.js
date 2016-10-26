@@ -22,7 +22,7 @@
     save() {
       return this.send('POST', {email: this.attributes.email, score: this.attributes.score})
         .then(data => JSON.parse(data))
-        .then(thit.attributes.result = result)
+        .then(this.attributes.result = result)
         .catch(error => console.log(error));
     }
 

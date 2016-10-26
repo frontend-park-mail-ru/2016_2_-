@@ -9,7 +9,7 @@
     }
 
     get baseUrl() {
-      //return 'https://technofront-f958d.firebaseio.com';
+      return 'https://tron-09-2016.herokuapp.com/api';
     }
 
     get defaults() {
@@ -28,21 +28,6 @@
       });
 
       return attributes;
-    }
-
-    fetch() {
-
-    }
-
-    save() {
-
-    }
-
-    remove() {
-      return this.send('DELETE', { id: this.attributes.id })
-        .then(() => {
-          this.attributes = {};
-        });
     }
 
     send(method, data, url) {
