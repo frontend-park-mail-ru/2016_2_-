@@ -8,8 +8,11 @@ let path = require('path');
 let technolibs = require('technolibs');
 
 
-app.use('/', express.static('public', { maxAge: 1 }));
-app.use('/chat', express.static('public', {maxAge: 1}));
+app.use('/', express.static('public', {maxAge: 1}));
+app.use('/game', express.static('public', {maxAge: 1}));
+app.use('/signup', express.static('public', {maxAge: 1}));
+app.use('/score', express.static('public', {maxAge: 1}));
+
 
 technoDoc.generate(require('./api'), 'public');
 
@@ -23,7 +26,7 @@ app.get('/api/session', (req, res) => {
 
 
 app.post('/api/session', (req, res) => {
-	res.send(technoDoc.mock(require('./api/scheme/Session')))
+  res.send(technoDoc.mock(require('./api/scheme/Session')))
 });
 
 

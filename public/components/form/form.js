@@ -40,7 +40,6 @@
      * Обновить html компонента
      */
     _updateHtml() {
-
       this._el.innerHTML = this.template(this._options.data);
     }
 
@@ -69,7 +68,8 @@
       controls.forEach(data => {
         //data.class = '${this.data.class}__${this.text}'; why dont work???
         data.attrs.class = this.data.class + '__js-controls__' + data.text;
-        let control = new Button(data, this._el.query);
+        let control = new Button(data);
+        console.log(control);
         this._el.querySelector("." + this.data.class + "__js-controls").appendChild(control._get());
       });
     }

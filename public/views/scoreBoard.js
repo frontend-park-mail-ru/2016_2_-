@@ -7,7 +7,7 @@
   class ScoreBoardView extends View {
     constructor(options = {}) {
       super(options);
-      this._el = document.querySelector('.js-scoreBoard');
+      this._el = document.querySelector('.js-scoreboard');
       this.hide();
       this.render(options);
       // TODO: дописать реализацию

@@ -5,7 +5,7 @@
 
 	class Button extends Block {
 
-		constructor (options, el) {
+		constructor (options) {
 			super('div', {});
 			this._options = options;
 			this.text = options.text;

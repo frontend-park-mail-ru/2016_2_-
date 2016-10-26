@@ -4,10 +4,15 @@
   class Block {
     constructor(name, options = {}) {
       if (name) {
+        //console.log()
         this._el = document.createElement(name);
         this.setAttrs(options.attrs);
       }
       this._options = options;
+    }
+
+    getClass() {
+      return this._options.attrs.class;
     }
 
     setAttrs(attrs = {}) {

@@ -49,7 +49,7 @@
         if (dataCheck) {
           this.user = new User(dataCheck);
           //this.user.fetch() - загрузиться с сервера
-          this.session = new Session(this.user);
+          window.session = new Session(this.user);
           this.router.go('/game');
           /* if (this.session.login()) {
            this.router.go('/game');

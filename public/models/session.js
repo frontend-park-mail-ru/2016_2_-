@@ -12,7 +12,7 @@
 
 
     url() {
-      return 'https://localhost:3001/';
+
     }
 
     logout() {
@@ -21,6 +21,9 @@
         .catch(res => console.log(res));
 
     }
+
+
+
 
     is_authenticated() {
       if (this.id) {

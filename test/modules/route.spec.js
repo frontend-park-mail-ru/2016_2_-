@@ -20,7 +20,7 @@
 			expect(this.route.match('/pathpathpath/123')).toBe(false);
 
 		});
-	})
+	});
 
 	describe('Route.fn.navigate', function () {
 		beforeEach(function () {
