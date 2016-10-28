@@ -12,12 +12,12 @@
     }
 
 
-    url() {
-      return this.baseUrl() + '/session';
+    get url() {
+      return (this.baseUrl + '/session');
     }
 
     logout() {
-      this.send('DELETE', {}, baseUrl() + '/session')
+      this.send('DELETE', {}, this.url)
         .then(res => console.log(res))
         .catch(res => console.log(res));
 
@@ -26,7 +26,7 @@
 
     is_authenticated() {
       if (this.id) {
-        this.send('GET', {id: this.id}, baseUrl() + '/session')
+        this.send('GET', null, this.url)
           .then(res => JSON.parse(res))
           .then(id => {
             return (id == this.id)
@@ -38,9 +38,13 @@
 
     login() {
       return this.send('POST', this.user.attributes, this.url)
-        .then((response => JSON.parse(response)))
         .then(data => {
-          this.id = data.id;
+          console.log('JSON_parse');
+          console.log(data);
+          return JSON.parse(data);
+        })
+        .then(data => {
+          this.id = data.userId;
         })
         .catch(response => console.log(response));
     }

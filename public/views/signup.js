@@ -78,7 +78,6 @@
         let dataCheck = validate(formData);
         if (dataCheck) {
           this.user = new User(formData);
-          let result = false;
           this.user.save()
             .then(() => {
               if (this.user.attributes.id) {
