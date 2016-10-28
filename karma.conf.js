@@ -53,5 +53,4 @@ module.exports = function (config) {
 
 	config.set(configuration)
 };
-Contact GitHub API Training Shop Blog About
 
