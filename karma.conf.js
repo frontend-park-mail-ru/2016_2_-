@@ -31,7 +31,6 @@ module.exports = function (config) {
 		logLevel: config.LOG_INFO,
 		plugins: [
 			'karma-jasmine',
-			'karma-chrome-launcher',
 			'karma-coverage'
 		],
 		browsers: ['PhantomJS'],
