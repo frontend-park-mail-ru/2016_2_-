@@ -34,12 +34,12 @@ module.exports = function (config) {
 			'karma-chrome-launcher',
 			'karma-coverage'
 		],
-		browsers: ['Chrome'],
+		browsers: ['PhantomJS'],
 		customLaunchers: {
-			Chrome_travis_ci: {
-				base: 'Chrome',
-				flags: ['--no-sandbox']
-			}
+			'PhantomJS_flags': {
+        			base: 'PhantomJS',
+        			flags: ['--load-images=false']
+      			}
 		},
 		coverageReporter: {
 			type: 'html',
@@ -48,7 +48,7 @@ module.exports = function (config) {
 	};
 
 	if (process.env.TRAVIS) {
-		configuration.browsers = ['Chrome_travis_ci']
+		configuration.browsers = ['PhantomJS_flags']
 	}
 
 	config.set(configuration)
