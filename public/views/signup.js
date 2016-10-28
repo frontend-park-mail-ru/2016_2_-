@@ -8,7 +8,7 @@
   const Session = window.SessionModel;
 
   function validate(data) {
-    if (2 > data.user.length || data.user.length > 12) {
+    if (2 > data.login.length || data.login.length > 12) {
       return {name: 'user', result: false};
     }
     if (data.password.length < 3) {
@@ -48,7 +48,7 @@
           class: this.class + '_formsignup',
           title: 'SignUp',
           fields: [
-            {name: 'user', placeholder: 'enter username', type: 'text', required: 'true'},
+            {name: 'login', placeholder: 'enter username', type: 'text', required: 'true'},
             {name: 'password', placeholder: 'enter password', type: 'password', required: 'true'},
             {name: 'email', placeholder: 'enter email', type: 'email', required: 'true'}
           ],
@@ -78,16 +78,23 @@
         let dataCheck = validate(formData);
         if (dataCheck) {
           this.user = new User(formData);
-          console.log(this.user);
-          if (this.user.save()) {
-            window.session = new Session(this.user);
-            if (window.session.login()) {
-              console.log("Signup_Okay");
-              this.router.go('/game');
-            }
-          }
-        } else {
-          console.log("SignUp_false");
+          let result = false;
+          this.user.save()
+            .then(() => {
+              if (this.user.attributes.id) {
+                this.session = new Session(this.user, {});
+                this.session.login()
+                  .then(() => {
+                    if (this.session.id) {
+                      this.router.go('/game');
+                    } else {
+                      console.log('login_fail');
+                    }
+                  });
+              } else {
+                console.log('fail registration');
+              }
+            });
         }
       });
 

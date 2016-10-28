@@ -14,16 +14,14 @@
     }
 
     save() {
-      let result = false;
-      this.send('POST', this.attributes, this.url)
+      return this.send('POST', this.attributes, this.url)
         .then(data => JSON.parse(data))
         .then(data => {
           this.attributes.id = data.id;
           console.log(this);
-          result = true;
+          console.log('aaa'); //mbotteam
         })
         .catch(error => console.log(error));
-      return result;
     }
 
     remove() {

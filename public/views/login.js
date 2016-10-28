@@ -26,7 +26,6 @@
       this._el = document.querySelector('.' + this.class);
       this.hide();
       this.options = options;
-      // this.render(options);
       // TODO: дописать реализацию
 
     }
@@ -47,18 +46,22 @@
         let formData = this._component.getFormData();
         let dataCheck = validate(formData);
         if (dataCheck) {
-          this.user = new User(dataCheck);
-          if (this.user.fetch()) {
-            window.session = new Session(this.user);
-            if (window.session.login()) {
-              console.log("Login_Okay");
-              this.router.go('/game');
-            }
-          }
+          this.user = new User(formData);
+          this.session = new Session(this.user, {});
+          console.log(this.session);
+          this.session.login()
+            .then(() => {
+              if (this.session.id) {
+                this.router.go('/game');
+              } else {
+                console.log('login_fail');
+              }
+            });
         } else {
-          console.log("Login_false");
+          console.log('fail registration');
         }
       });
+
 
       this._component.addEventListenerOnChild('click', this.class + '_formlogin_controls_signup', event => {
         event.preventDefault();
@@ -94,7 +97,6 @@
         }
       });
     }
-
   }
 
 
