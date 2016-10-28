@@ -25,7 +25,8 @@
     "express": "^4.14.0",
     "technolibs": "1.1.*",
     "json-schema-mock": "0.0.8",
-    "techno-gendoc": "0.4.1"
+    "techno-gendoc": "0.4.1",
+    "phantomjs-prebuilt": "2.1.7"
   },
   "devDependencies": {
     "eslint": "^3.6.0",
