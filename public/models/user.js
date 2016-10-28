@@ -14,12 +14,16 @@
     }
 
     save() {
-      this.send('POST', this.attributes, this._url())
+      let result = false;
+      this.send('POST', this.attributes, this.url)
         .then(data => JSON.parse(data))
-        .then(result => {
-          this.attributes.id = result.id;
+        .then(data => {
+          this.attributes.id = data.id;
+          console.log(this);
+          result = true;
         })
         .catch(error => console.log(error));
+      return result;
     }
 
     remove() {
@@ -29,13 +33,15 @@
     }
 
     fetch() {
-      this.send('GET', {id: this.attributes.id}.this, url)
+      let result = false;
+      this.send('GET', null, this.url + '?id=' + this.attributes.id)
         .then(data => JSON.parse(data))
         .then(attrs => {
           this.attributes = attrs;
+          result = true;
         })
         .catch(error => console.log(error));
-
+      return result;
       //todo написать загрузку юзера по имени и паролю
     }
 

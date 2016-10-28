@@ -46,9 +46,9 @@
     _installInputs() {
       let {fields = []} = this.data;
       fields.forEach(field => {
-        field.class = this.data.class + '__js-inputs__' + field.name;
+        field.class = this.data.class + '_inputs_' + field.name;
         let input = new Input(field);
-        this._el.querySelector('.' + this.data.class + '__js-inputs').appendChild(input._get());
+        this._el.querySelector('.' + this.data.class + '_inputs').appendChild(input._get());
       })
     }
 
@@ -67,10 +67,10 @@
       let {controls = []} = this.data;
       controls.forEach(data => {
         //data.class = '${this.data.class}__${this.text}'; why dont work???
-        data.attrs.class = this.data.class + '__js-controls__' + data.text;
+        data.attrs.class = this.data.class + '_controls_' + data.text;
         let control = new Button(data);
         console.log(control);
-        this._el.querySelector("." + this.data.class + "__js-controls").appendChild(control._get());
+        this._el.querySelector("." + this.data.class + '_controls').appendChild(control._get());
       });
     }
 

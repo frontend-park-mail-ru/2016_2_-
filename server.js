@@ -8,19 +8,12 @@ let path = require('path');
 let technolibs = require('technolibs');
 
 
-app.use('/', express.static('public', {maxAge: 1}));
-app.use('/game', express.static('public', {maxAge: 1}));
-app.use('/signup', express.static('public', {maxAge: 1}));
-app.use('/score', express.static('public', {maxAge: 1}));
 
-/*
-app.use('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public/index.html'));
-}); */
 
 technoDoc.generate(require('./api'), 'public');
 
 app.use(parser.json());
+
 app.use('/libs', express.static('node_modules'));
 
 
@@ -59,6 +52,13 @@ app.get('/api/messages', function (req, res) {
     technoDoc.mock(require('./api/scheme/Message')),
     technoDoc.mock(require('./api/scheme/Message'))
   ])
+});
+
+
+app.use('/', express.static('public', {maxAge: 1}));
+
+app.use('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public/index.html'));
 });
 
 app.listen(process.env.PORT || 3001, () => {

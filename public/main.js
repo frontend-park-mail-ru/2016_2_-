@@ -52,11 +52,13 @@
 
 
   if (typeof window === 'object') {
+
     window.router = (new Router)
       .addRoute('/game', GameView)
       .addRoute('/score', ScoreBoardView)
       .addRoute('/signup', SignupView)
       .addRoute('/', LoginView)
       .start();
+
   }
 })();

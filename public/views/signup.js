@@ -21,7 +21,7 @@
   class SignupView extends View {
     constructor(options = {}) {
       super(options);
-      this.class = 'js-signup';
+      this.class = 'signup';
       // '.${options.name}' || .js-login
       this._el = document.querySelector('.' + this.class);
       this.hide();
@@ -45,7 +45,7 @@
       this._component = new Form({
         el: this._el,
         data: {
-          class: this.class + '__formsignup',
+          class: this.class + '_formsignup',
           title: 'SignUp',
           fields: [
             {name: 'user', placeholder: 'enter username', type: 'text', required: 'true'},
@@ -57,7 +57,6 @@
               text: 'signup',
               attrs: {
                 type: 'submit',
-                name: 'aaa'
               }
             },
             {
@@ -78,23 +77,21 @@
         let formData = this._component.getFormData();
         let dataCheck = validate(formData);
         if (dataCheck) {
-          this.user = new User(dataCheck);
-          this.user.save();
-          //this.user.save(); пока нет java-серва, считаем что логин удался
-          this.session = new Session(this.user);
-          this.router.go('/game');
-          /* if (this.session.login()) {
-           this.router.go('/game');
-           console.log("SignUp_Okay");
-           } else {
-           alert('не удалось зарегаться');
-           }*/
+          this.user = new User(formData);
+          console.log(this.user);
+          if (this.user.save()) {
+            window.session = new Session(this.user);
+            if (window.session.login()) {
+              console.log("Signup_Okay");
+              this.router.go('/game');
+            }
+          }
         } else {
           console.log("SignUp_false");
         }
       });
 
-      this._component.addEventListenerOnChild('click', this.class + '__formsignup__js-controls__singin', event => {
+      this._component.addEventListenerOnChild('click', this.class + '_formsignup_controls_singin', event => {
         event.preventDefault();
         this.router.go('/');
       });

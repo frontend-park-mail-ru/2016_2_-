@@ -45,7 +45,7 @@
 				let pathname = window.location.pathname;
 				this.onroute(pathname, state);
 			}.bind(this);
-
+			this.started = true;
 			const pathname = window.location.pathname;
 			this.onroute(pathname, state);
 		}
@@ -75,6 +75,9 @@
 		 * @param {Object} [state={}] - Объект state, который передаётся в вызов history.pushState
 		 */
 		go(pathname, state = {}) {
+			if (!this.started) {
+				return;
+			}
 			if (window.location.pathname === pathname) {
 				return;
 			}

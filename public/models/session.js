@@ -44,12 +44,10 @@
         .then((response => JSON.parse(response)))
         .then(data => {
           this.id = data.id;
-          console.log(data);
           result = true;
         })
         .catch(response => console.log(response));
-      //return result;
-      return true;
+      return result;
     }
 
     /* TODO сделать фунцкию создания пользователя, редактирования, удаления*/

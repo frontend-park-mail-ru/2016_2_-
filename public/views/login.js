@@ -21,12 +21,12 @@
   class LoginView extends View {
     constructor(options = {}) {
       super(options);
-      this.class = 'js-login';
+      this.class = 'login';
       // '.${options.name}' || .js-login
       this._el = document.querySelector('.' + this.class);
       this.hide();
       this.options = options;
-     // this.render(options);
+      // this.render(options);
       // TODO: дописать реализацию
 
     }
@@ -48,21 +48,19 @@
         let dataCheck = validate(formData);
         if (dataCheck) {
           this.user = new User(dataCheck);
-          //this.user.fetch() - загрузиться с сервера
-          window.session = new Session(this.user);
-          this.router.go('/game');
-          /* if (this.session.login()) {
-           this.router.go('/game');
-           console.log("Login_Okay");
-           } else {
-           alert('не удалось залогиниться');
-           }*/
+          if (this.user.fetch()) {
+            window.session = new Session(this.user);
+            if (window.session.login()) {
+              console.log("Login_Okay");
+              this.router.go('/game');
+            }
+          }
         } else {
           console.log("Login_false");
         }
       });
 
-      this._component.addEventListenerOnChild('click', this.class + '__formlogin__js-controls__signup', event => {
+      this._component.addEventListenerOnChild('click', this.class + '_formlogin_controls_signup', event => {
         event.preventDefault();
         this.router.go('/signup');
       });
@@ -72,7 +70,7 @@
       this._component = new Form({
         el: this._el,
         data: {
-          class: this.class + '__formlogin',
+          class: this.class + '_formlogin',
           title: 'Login',
           fields: [
             {name: 'user', placeholder: 'enter username', type: 'text', required: 'true'},
