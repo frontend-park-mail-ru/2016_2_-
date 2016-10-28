@@ -1,31 +1,27 @@
 (function () {
 	'use strict';
 
-	class Button {
+	const Block = window.Block;
+
+	class Button extends Block {
+
 		constructor (options) {
+			super('div', {});
+			this._options = options;
 			this.text = options.text;
+			this.template = window.fest['button.tmpl'];
 			this.attrs = options.attrs || [];
-			this.el = document.createElement('button');
+			this.render();
 		}
 
-		setAttrs (attrs) {
-			Object.keys(attrs).forEach(name => {
-				this.el.setAttribute(name, attrs[name]);
-			})
-		}
 
-		render () {
-			this.el.innerHTML = this.text;
-			this.el.classList.add('button');
-			this.setAttrs(this.attrs);
+		render() {
+			this._el.innerHTML = this.template(this._options);
 			return this;
 		}
-		
-		toString () {
-			return this.el.outerHTML;
-		}
 	}
-        //export
-	window.Button = Button;
 
+
+	//export
+	window.Button = Button;
 })();

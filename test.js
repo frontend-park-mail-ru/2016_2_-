@@ -2,12 +2,9 @@
 let assert = require('assert');
 let hello = require('./public/main').hello;
 let filter = require('./public/main').filter;
+
 let plural = require('./public/main').plural;
 
-
-global.window =  {
-  rules: ['Backend']
-}
 
 assert.equal(hello('Test'), 'Привет, Test');
 

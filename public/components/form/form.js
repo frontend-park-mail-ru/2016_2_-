@@ -1,95 +1,104 @@
 (function () {
-    'use strict';
-	
-    // import
-    let Button = window.Button;
+  'use strict';
 
-    class Form {
-	    
-        /**
-         * Конструктор класса Form
-         */
-        constructor(options = {data: {}}) {
-            this.data = options.data;
-            this.el = options.el;
+  // import
+  const Block = window.Block;
+  const Button = window.Button;
+  const Input = window.Input;
 
-            this.render();
-        }
+  class Form extends Block {
 
-        render() {
-            this._updateHtml()
-            this._installControls();
-        }
+    /**
+     * Конструктор класса Form
+     */
+    constructor(options = {data: {}}) {
+      super('form', options);
 
-        
-        _getFields() {
-            let {fields = []} = this.data;
-
-            return fields.map(field => {
-                return `<input type="${field.type}"  name="${field.name}" placeholder="${field.name}">`
-            }).join(' ');
-        }
-
-        
-        _updateHtml() {
-            this.el.innerHTML = `
-				<form>
-					<h1>${this.data.title} </h1>
-					<div>
-						${this._getFields()} 
-					</div>
-					<div class="js-controls">
-					</div>
-				<form>
-			`;
-        }
-
-        /**
-         * Вставить управляющие элементы в форму
-         */        
-        _installControls() {
-            let {controls = []} = this.data;
-
-
-            controls.forEach(data => {
-                let control = new Button({attrs: data.attrs, text: data.text}).render();
-                this.el.querySelector('.js-controls').appendChild(control.el);
-            });
-        }
-
-        /**
-         * Подписка на событие
-         * @param {string} type - имя события
-         * @param {function} callback - коллбек
-         */        
-        on(type, callback) {
-            this.el.addEventListener(type, callback);
-        }
-
-        /**
-         * Взять данные формы
-         * @return {object}
-         */       
-        getFormData() {
-            let form = this.el.querySelector('form');
-            let elements = form.elements;
-            let fields = {};
-
-            Object.keys(elements).forEach(element => {
-                let name = elements[element].name;
-                let value = elements[element].value;
-
-                if (!name) {
-                    return;
-                }
-
-                fields[name] = value;
-            });
-
-            return fields;
-        }
-
+      this.template = window.fest['form.tmpl'];
+      this.data = options.data;
+      this._el = options.el;
+      this.render();
     }
-    //export
-    window.Form = Form;
+
+    /**
+     * Обновляем HTML
+     */
+    render() {
+      this._updateHtml();
+      this._installControls();
+      this._installInputs();
+    }
+
+    /**
+     * Обнуляем форму
+     */
+    reset() {
+      this._el.querySelector('form').reset();
+    }
+
+    /**
+     * Обновить html компонента
+     */
+    _updateHtml() {
+      this._el.innerHTML = this.template(this._options.data);
+    }
+
+    _installInputs() {
+      let {fields = []} = this.data;
+      fields.forEach(field => {
+        field.class = this.data.class + '_inputs_' + field.name;
+        let input = new Input(field);
+        this._el.querySelector('.' + this.data.class + '_inputs').appendChild(input._get());
+      })
+    }
+
+    /**
+     * Вешает событие на вложенный блок/элемент в форме
+     */
+
+    addEventListenerOnChild(event, childClass, handler) {
+      this._el.querySelector('.' + childClass).addEventListener(event, handler);
+    }
+
+    /**
+     * Вставить управляющие элементы в форму
+     */
+    _installControls() {
+      let {controls = []} = this.data;
+      controls.forEach(data => {
+        //data.class = '${this.data.class}__${this.text}'; why dont work???
+        data.attrs.class = this.data.class + '_controls_' + data.text;
+        let control = new Button(data);
+        console.log(control);
+        this._el.querySelector("." + this.data.class + '_controls').appendChild(control._get());
+      });
+    }
+
+    /**
+     * Взять данные формы
+     * @return {object}
+     */
+    getFormData() {
+      let form = this._el.querySelector('form');
+      let elements = form.elements;
+      let fields = {};
+
+      Object.keys(elements).forEach(element => {
+        let name = elements[element].name;
+        let value = elements[element].value;
+
+        if (!name) {
+          return;
+        }
+
+        fields[name] = value;
+      });
+
+      return fields;
+    }
+
+  }
+
+  //export
+  window.Form = Form;
 })();

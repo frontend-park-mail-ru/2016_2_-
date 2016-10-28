@@ -1,15 +1,23 @@
 (function () {
-  'use strict';
+
+  const Router = window.Router;
+  const GameView = window.GameView;
+  const LoginView = window.LoginView;
+  const ScoreBoardView = window.ScoreBoardView;
+  const SignupView = window.SignupView;
+
+
+  const Model = window.Model;
 
 
   function filter(str) {
     let rules = window.rules;
-    rules = rules.map(rule=>{
+    rules = rules.map(rule=> {
       return {
-        regexp : new RegExp(`\\b${rule}\\b`,'g'),
+        regexp: new RegExp(`\\b${rule}\\b`, 'g'),
         length: rule.length
       };
-    })
+    });
     rules.forEach(rule=>str = str.replace(rule.regexp, (new Array(rule.length + 1)).join('*')));
     return str;
   }
@@ -41,7 +49,16 @@
     exports.plural = plural;
     exports.filter = filter;
   }
+
+
   if (typeof window === 'object') {
-    window.signIn();
+
+    window.router = (new Router)
+      .addRoute('/game', GameView)
+      .addRoute('/score', ScoreBoardView)
+      .addRoute('/signup', SignupView)
+      .addRoute('/', LoginView)
+      .start();
+
   }
 })();
