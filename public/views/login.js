@@ -8,7 +8,7 @@
   const Session = window.SessionModel;
 
   function validate(data) {
-    if (2 > data.user.length || data.user.length > 12) {
+    if (2 > data.login.length || data.login.length > 12) {
       return {name: 'user', result: false};
     }
     if (data.password.length < 3) {
@@ -22,7 +22,6 @@
     constructor(options = {}) {
       super(options);
       this.class = 'login';
-      // '.${options.name}' || .js-login
       this._el = document.querySelector('.' + this.class);
       this.hide();
       this.options = options;
@@ -76,7 +75,7 @@
           class: this.class + '_formlogin',
           title: 'Login',
           fields: [
-            {name: 'user', placeholder: 'enter username', type: 'text', required: 'true'},
+            {name: 'login', placeholder: 'enter username', type: 'text', required: 'true'},
             {name: 'password', placeholder: 'enter password', type: 'password'},
           ],
           controls: [

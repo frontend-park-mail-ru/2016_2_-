@@ -37,6 +37,7 @@
     }
 
     login() {
+      console.log('login__');
       return this.send('POST', this.user.attributes, this.url)
         .then(data => {
           console.log('JSON_parse');
