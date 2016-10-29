@@ -31,25 +31,24 @@ module.exports = function (config) {
 		logLevel: config.LOG_INFO,
 		plugins: [
 			'karma-jasmine',
-			'karma-chrome-launcher',
 			'karma-coverage'
 		],
-		browsers: ['PhantomJS'],
-		customLaunchers: {
-			'PhantomJS_flags': {
-        			base: 'PhantomJS',
-        			flags: ['--load-images=false']
-      			}
-		},
-		coverageReporter: {
-			type: 'html',
-			dir: 'public/coverage/'
-		}
-	};
+    		browsers: ['Chrome'],
+    		customLaunchers: {
+      		Chrome_travis_ci: {
+        		base: 'Chrome',
+        		flags: ['--no-sandbox']
+      		}
+    	},
+    coverageReporter: {
+      type: 'html',
+      dir: 'public/coverage/'
+    }
+  };
 
-	if (process.env.TRAVIS) {
-		configuration.browsers = ['PhantomJS_flags']
-	}
+  if (process.env.TRAVIS) {
+    configuration.browsers = ['Chrome_travis_ci']
+  }
 
 	config.set(configuration)
 };
