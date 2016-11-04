@@ -6,9 +6,6 @@
   "scripts": {
     "lint": "./node_modules/.bin/eslint public/components/**/*.js",
     "fest": "./node_modules/.bin/fest-build --dir=public/components/",
-    <!-- "test": "karma start --single-run",
-    "karma:start": "karma start",
-    "karma:run": "karma run", -->
     "start": "node server.js"
   },
   "repository": {
