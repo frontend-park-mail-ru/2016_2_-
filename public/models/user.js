@@ -25,26 +25,22 @@
     }
 
     remove() {
-      this.send('DELETE', {id: this.attributes.id}, this.url)
+      this.send('DELETE', null, this.url + '/' + this.attributes.id.toString())
         .then(data => console.log(data))
         .catch(error => console.log(error));
     }
 
     fetch() {
-      let result = false;
-      this.send('GET', null, this.url + '?id=' + this.attributes.id)
+      return this.send('GET', null, this.url + '/' + this.attributes.id.toString())
         .then(data => JSON.parse(data))
         .then(attrs => {
           this.attributes = attrs;
-          result = true;
         })
         .catch(error => console.log(error));
-      return result;
-      //todo написать загрузку юзера по имени и паролю
     }
 
     update() {
-      this.send('PUT', this.attributes, this.url)
+      this.send('PUT', this.attributes, this.url + '/' + this.attributes.id.toString())
         .then(data => JSON.parse(data))
         .then(id => {
           this.attributes.id = id;

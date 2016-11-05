@@ -17,20 +17,20 @@
     }
 
     logout() {
-      this.send('DELETE', {}, this.url)
+      return this.send('DELETE', {}, this.url)
         .then(res => console.log(res))
         .catch(res => console.log(res));
-
     }
 
 
     is_authenticated() {
       if (this.id) {
-        this.send('GET', null, this.url)
+        return this.send('GET', null, this.url)
           .then(res => JSON.parse(res))
           .then(id => {
-            return (id == this.id)
-          });
+            return (id === this.id)
+          })
+          .catch(error => console.log(error));
       } else {
         return false;
       }
@@ -45,7 +45,7 @@
           return JSON.parse(data);
         })
         .then(data => {
-          this.id = data.userId;
+          this.user.attributes.id = data.userId;
         })
         .catch(response => console.log(response));
     }

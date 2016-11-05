@@ -52,13 +52,29 @@
 
 
   if (typeof window === 'object') {
-
+/*
     window.router = (new Router)
       .addRoute('/game', GameView)
       .addRoute('/score', ScoreBoardView)
       .addRoute('/signup', SignupView)
       .addRoute('/', LoginView)
-      .start();
+      .start(); */
+    const User = window.UserModel;
+    const Session = window.SessionModel;
+
+    let user = new User({
+      login: 'u',
+      password: '1',
+      id: 11
+    });
+    let session = new Session(user);
+    session.login()
+      .then(() => {
+        user.fetch()
+          .then(() => {
+            console.log(user);
+          })
+      })
 
   }
 })();
