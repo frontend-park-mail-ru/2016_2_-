@@ -82,13 +82,16 @@
             .then(() => {
               if (this.user.attributes.id) {
                 this.session = new Session(this.user, {});
+                console.log(this.session);
                 this.session.login()
                   .then(() => {
-                    if (this.session.id) {
-                      this.router.go('/game');
-                    } else {
-                      console.log('login_fail');
-                    }
+                    this.session.is_authenticated()
+                      .then(result => {
+                        if (result) {
+                          this.router.go('/game');
+                        } else
+                          alert('не авторизованы');
+                      })
                   });
               } else {
                 console.log('fail registration');

@@ -1,5 +1,9 @@
 (function () {
-
+/*
+ password
+ login
+ email
+ */
 
   const Model = window.Model;
 
@@ -18,8 +22,6 @@
         .then(data => JSON.parse(data))
         .then(data => {
           this.attributes.id = data.id;
-          console.log(this);
-          console.log('aaa'); //mbotteam
         })
         .catch(error => console.log(error));
     }

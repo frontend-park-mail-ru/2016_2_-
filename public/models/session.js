@@ -8,7 +8,6 @@
     constructor(user, attributes) {
       super(attributes);
       this.user = user;
-      //this.data = attributes.data;
     }
 
 
@@ -24,23 +23,26 @@
 
 
     is_authenticated() {
-      if (this.id) {
-        return this.send('GET', null, this.url)
-          .then(res => JSON.parse(res))
-          .then(id => {
-            return (id === this.id)
-          })
-          .catch(error => console.log(error));
-      } else {
-        return false;
-      }
+      return this.send('GET', null, this.url)
+        .then(res => JSON.parse(res))
+        .then(id => {
+          if (id) {
+            this.id = id;
+            return true;
+          } else {
+            return false;
+          }
+        })
+        .catch(error => {
+          console.log(error);
+          return false;
+        });
     }
 
     login() {
       console.log('login__');
       return this.send('POST', this.user.attributes, this.url)
         .then(data => {
-          console.log('JSON_parse');
           console.log(data);
           return JSON.parse(data);
         })
