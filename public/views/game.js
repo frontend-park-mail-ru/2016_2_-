@@ -19,6 +19,7 @@
     render(options) {
       this._createComponents();
       this._createControls();
+      this._init();
       //this._el.innerHTML = '<h1>MEGA MAIN PAGE!</h1>';
     }
 
@@ -64,9 +65,12 @@
       this._el.appendChild(this._component._get());
     }
 
-    /*init(options = {}) {
-     // TODO: дописать реализацию
-     }*/
+    _init() {
+      this._component.addEventListenerOnChild('click', this.class + '__buttons__quickgame', event => {
+        event.preventDefault();
+        this.router.go('/game1');
+      });
+    }
   }
 
   window.GameView = GameView;

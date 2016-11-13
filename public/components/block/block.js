@@ -51,6 +51,10 @@
       this._el.removeEventListener(type, callback);
     }
 
+    addEventListenerOnChild(event, childClass, handler) {
+      this._el.querySelector('.' + childClass).addEventListener(event, handler);
+    }
+
     toString() {
       return this._el.outerHTML;
     }
