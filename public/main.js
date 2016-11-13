@@ -55,6 +55,7 @@
 
     window.router = (new Router)
       .addRoute('/game', GameView)
+      .addRoute('/game1', gameFrame)
       .addRoute('/score', ScoreBoardView)
       .addRoute('/signup', SignupView)
       .addRoute('/', LoginView)
