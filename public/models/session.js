@@ -21,6 +21,13 @@
         .catch(res => console.log(res));
     }
 
+    getAuthenticatedId() {
+      return this.send('GET', null, this.url)
+        .then(response => JSON.parse(response))
+        .then(response => {
+          return response.userId;
+        });
+    }
 
     is_authenticated() {
       return this.send('GET', null, this.url)

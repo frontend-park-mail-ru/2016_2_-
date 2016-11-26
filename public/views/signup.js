@@ -85,13 +85,7 @@
                 console.log(this.session);
                 this.session.login()
                   .then(() => {
-                    this.session.is_authenticated()
-                      .then(result => {
-                        if (result) {
-                          this.router.go('/game');
-                        } else
-                          alert('не авторизованы');
-                      })
+                    this.router.go('/game');
                   });
               } else {
                 console.log('fail registration');

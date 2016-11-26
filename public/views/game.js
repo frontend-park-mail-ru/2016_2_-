@@ -12,6 +12,8 @@
       this.class = 'mainpage';
       this.hide();
       this.render(options);
+
+
       // TODO: дописать реализацию
 
     }
@@ -19,14 +21,33 @@
     render(options) {
       this._createComponents();
       this._createControls();
-      this._init();
+      this._initListeners();
       //this._el.innerHTML = '<h1>MEGA MAIN PAGE!</h1>';
+    }
+
+    _initListeners() {
+      this._component.addEventListenerOnChild('click', 'mainpage__buttons__quickgame', event => {
+        event.preventDefault();
+        let session = new window.SessionModel({}, {});
+        session.getAuthenticatedId()
+          .then(id => {
+            console.log(id);
+            if (id + 1) {
+              alert('вы авторизованы, id = ' + id.toString());
+            } else {
+              alert('вы не авторизованы');
+            }
+          })
+          .catch(error => console.log(error));
+
+        //this.router.go('/game1');
+      });
     }
 
     _createControls() {
       let buttons = [
         {
-          text: 'Quick Game',
+          text: 'проверить аутентификацию',
           attrs: {
             type: 'button',
             name: 'quickgame'
@@ -66,10 +87,9 @@
     }
 
     _init() {
-      this._component.addEventListenerOnChild('click', this.class + '__buttons__quickgame', event => {
-        event.preventDefault();
-        this.router.go('/game1');
-      });
+
+
+     // this._component.addEventListenerOnChild('click', this.class + )
     }
   }
 
