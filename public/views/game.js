@@ -26,7 +26,7 @@
     }
 
     _initListeners() {
-      this._component.addEventListenerOnChild('click', 'mainpage__buttons__quickgame', event => {
+      this._component.addEventListenerOnChild('click', 'mainpage__buttons__auth', event => {
         event.preventDefault();
         let session = new window.SessionModel({}, {});
         session.getAuthenticatedId()
@@ -42,15 +42,26 @@
 
         //this.router.go('/game1');
       });
+      this._component.addEventListenerOnChild('click', 'mainpage__buttons__quickgame', event => {
+        event.preventDefault();
+        this.router.go('/game1');
+      });
     }
 
     _createControls() {
       let buttons = [
+         {
+          text: 'Single Player',
+          attrs: {
+            type: 'button',
+            name: 'quickgame'
+          }
+        },
         {
           text: 'проверить аутентификацию',
           attrs: {
             type: 'button',
-            name: 'quickgame'
+            name: 'auth'
           }
         },
         {
