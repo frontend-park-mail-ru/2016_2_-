@@ -5,7 +5,7 @@
   const LoginView = window.LoginView;
   const ScoreBoardView = window.ScoreBoardView;
   const SignupView = window.SignupView;
-
+  const MainView = window.MainView;
 
   const Model = window.Model;
 
