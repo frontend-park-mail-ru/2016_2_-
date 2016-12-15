@@ -1,109 +1,89 @@
 (function () {
   'use strict';
-
-  const Block = window.Block;
-  const Button = window.Button;
+  const View = window.View;
+  const Form = window.Form;
 
   class GameView extends View {
     constructor(options = {}) {
       super(options);
-      this._el = document.querySelector('.mainpage');
-      console.log(this._el);
-      this.class = 'mainpage';
+      this._el = document.querySelector('.js-game');
       this.hide();
-      this.render(options);
-
-
-      // TODO: дописать реализацию
-
-    }
-
-    render(options) {
-      this._createComponents();
-      this._createControls();
-      this._initListeners();
-      //this._el.innerHTML = '<h1>MEGA MAIN PAGE!</h1>';
-    }
-
-    _initListeners() {
-      this._component.addEventListenerOnChild('click', 'mainpage__buttons__auth', event => {
-        event.preventDefault();
-        let session = new window.SessionModel({}, {});
-        session.getAuthenticatedId()
-          .then(id => {
-            console.log(id);
-            if (id + 1) {
-              alert('вы авторизованы, id = ' + id.toString());
-            } else {
-              alert('вы не авторизованы');
-            }
-          })
-          .catch(error => console.log(error));
-
-        //this.router.go('/game1');
-      });
-      this._component.addEventListenerOnChild('click', 'mainpage__buttons__quickgame', event => {
-        event.preventDefault();
-        this.router.go('/game1');
-      });
-    }
-
-    _createControls() {
-      let buttons = [
-         {
-          text: 'Single Player',
-          attrs: {
-            type: 'button',
-            name: 'quickgame'
-          }
-        },
-        {
-          text: 'проверить аутентификацию',
-          attrs: {
-            type: 'button',
-            name: 'auth'
-          }
-        },
-        {
-          text: 'Scoreboard',
-          attrs: {
-            type: 'button',
-            name: 'scoreboard'
-          }
-        },
-        {
-          text: 'exit',
-          attrs: {
-            type: 'button',
-            name: 'exit'
-          }
-        }
-      ];
-
-      buttons.forEach(buttonInfo => {
-        buttonInfo.attrs.class = this._component.getClass() + '__' + buttonInfo.attrs.name;
-        let button = new Button(buttonInfo);
-        this._component._el.appendChild(button._get());
-      });
-    };
-
-    _createComponents() {
-      this._component = new Block('div', {
-        name: 'div',
-        attrs: {
-          class: this.class + '__buttons'
-        }
-      });
-      this._el.appendChild(this._component._get());
     }
 
     _init() {
+      var socket = new WebSocket("ws://localhost:8080/game");
+      socket.onopen = function() {
+        alert("Соединение установлено.");
+      };
 
+      socket.onclose = function(event) {
+        if (event.wasClean) {
+          alert('Соединение закрыто чисто');
+        } else {
+          alert('Обрыв соединения'); // например, "убит" процесс сервера
+        }
+        alert('Код: ' + event.code + ' причина: ' + event.reason);
+      };
 
-     // this._component.addEventListenerOnChild('click', this.class + )
+      socket.onmessage = function(event) {
+        alert("Получены данные " + event.data);
+      };
+
+      socket.onerror = function(error) {
+        alert("Ошибка " + error.message);
+      };      
+      /*let WebSocketServer = require('websocket').server;
+      let WebSocketClient = require('websocket').client;
+      let WebSocketFrame  = require('websocket').frame;
+      let WebSocketRouter = require('websocket').router;
+      var client = new WebSocketClient();
+ 
+      client.on('connectFailed', function(error) {
+        console.log('Connect Error: ' + error.toString());
+      });
+ 
+      client.on('connect', function(connection) {
+        console.log('WebSocket Client Connected');
+        connection.on('error', function(error) {
+          console.log("Connection Error: " + error.toString());
+        });
+        connection.on('close', function() {
+          console.log('echo-protocol Connection Closed');
+        });
+        connection.on('message', function(message) {
+            if (message.type === 'utf8') {
+              console.log("Received: '" + message.utf8Data + "'");
+            }
+        });
+    
+        function sendNumber() {
+          if (connection.connected) {
+              var number = Math.round(Math.random() * 0xFFFFFF);
+              connection.sendUTF(number.toString());
+              setTimeout(sendNumber, 1000);
+          }
+        }
+        sendNumber();
+      });
+ 
+      client.connect('ws://localhost:8080/', 'echo-protocol');*/
+
+  }
+
+    _initCanvas () {
+      this.canvas = this._el.querySelector('.js-canvas');
+      this.canvas.width = this._el.clientWidth + '';
+      this.canvas.height = this._el.clientHeight + '';
+    }
+
+    resume () {
+      super.resume();
+      this._initCanvas();
+      this._init();
     }
   }
 
+  // export
   window.GameView = GameView;
 
-}());
+})();

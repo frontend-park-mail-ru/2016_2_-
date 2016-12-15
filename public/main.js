@@ -54,8 +54,8 @@
   if (typeof window === 'object') {
 
     window.router = (new Router)
+      .addRoute('/menu', MainView)
       .addRoute('/game', GameView)
-      .addRoute('/game1', gameFrame)
       .addRoute('/score', ScoreBoardView)
       .addRoute('/signup', SignupView)
       .addRoute('/', LoginView)
