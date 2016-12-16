@@ -147,7 +147,6 @@
     isRoute(value) {
       return this.route == this.ROUTE[value];
     }
-
   }
   //export
   window.Snake = Snake;
