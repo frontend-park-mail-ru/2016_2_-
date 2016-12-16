@@ -31,24 +31,20 @@
     }
 
     send(method, data, url) {
-      //const url = this.url(data.id);
-      console.log(data);
       return new Promise((resolve, reject) => {
         let xhr = new XMLHttpRequest();
         xhr.open(method, url, true);
+        xhr.withCredentials = true;
         xhr.setRequestHeader('Content-type', 'application/json');
-
         xhr.onreadystatechange = function () {
           if (xhr.readyState === XMLHttpRequest.DONE) {
             if (xhr.status === 200) {
               resolve(xhr.responseText);
             } else {
-              console.log(xhr.getAllResponseHeaders());
               reject({code: xhr.status, text: xhr.responseText});
             }
           }
         };
-        console.log(JSON.stringify(data));
         xhr.send(JSON.stringify(data));
       });
     }

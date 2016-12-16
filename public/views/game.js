@@ -1,74 +1,53 @@
 (function () {
   'use strict';
-
-  const Block = window.Block;
-  const Button = window.Button;
+  const View = window.View;
+  const Form = window.Form;
 
   class GameView extends View {
     constructor(options = {}) {
       super(options);
-      this._el = document.querySelector('.mainpage');
-      console.log(this._el);
-      this.class = 'mainpage';
+      this._el = document.querySelector('.js-game');
       this.hide();
-      this.render(options);
-      // TODO: дописать реализацию
-
     }
 
-    render(options) {
-      this._createComponents();
-      this._createControls();
-      //this._el.innerHTML = '<h1>MEGA MAIN PAGE!</h1>';
-    }
+    _init() {
+      var socket = new WebSocket("ws://localhost:8080/game");
+      socket.onopen = function() {
+        alert("Соединение установлено.");
+      };
 
-    _createControls() {
-      let buttons = [
-        {
-          text: 'Quick Game',
-          attrs: {
-            type: 'button',
-            name: 'quickgame'
-          }
-        },
-        {
-          text: 'Scoreboard',
-          attrs: {
-            type: 'button',
-            name: 'scoreboard'
-          }
-        },
-        {
-          text: 'exit',
-          attrs: {
-            type: 'button',
-            name: 'exit'
-          }
+      socket.onclose = function(event) {
+        if (event.wasClean) {
+          alert('Соединение закрыто чисто');
+        } else {
+          alert('Обрыв соединения'); // например, "убит" процесс сервера
         }
-      ];
+        alert('Код: ' + event.code + ' причина: ' + event.reason);
+      };
 
-      buttons.forEach(buttonInfo => {
-        buttonInfo.attrs.class = this._component.getClass() + '__' + buttonInfo.attrs.name;
-        let button = new Button(buttonInfo);
-        this._component._el.appendChild(button._get());
-      });
-    };
+      socket.onmessage = function(event) {
+        alert("Получены данные " + event.data);
+      };
 
-    _createComponents() {
-      this._component = new Block('div', {
-        name: 'div',
-        attrs: {
-          class: this.class + '__buttons'
-        }
-      });
-      this._el.appendChild(this._component._get());
-    }
-
-    /*init(options = {}) {
-     // TODO: дописать реализацию
-     }*/
+      socket.onerror = function(error) {
+        alert("Ошибка " + error.message);
+      };
   }
 
+    _initCanvas () {
+      this.canvas = this._el.querySelector('.js-canvas');
+      this.canvas.width = this._el.clientWidth + '';
+      this.canvas.height = this._el.clientHeight + '';
+    }
+
+    resume () {
+      super.resume();
+      this._initCanvas();
+      this._init();
+    }
+  }
+
+  // export
   window.GameView = GameView;
 
-}());
+})();

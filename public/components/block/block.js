@@ -4,7 +4,6 @@
   class Block {
     constructor(name, options = {}) {
       if (name) {
-        //console.log()
         this._el = document.createElement(name);
         this.setAttrs(options.attrs);
       }
@@ -49,6 +48,10 @@
      */
     stop(type, callback) {
       this._el.removeEventListener(type, callback);
+    }
+
+    addEventListenerOnChild(event, childClass, handler) {
+      this._el.querySelector('.' + childClass).addEventListener(event, handler);
     }
 
     toString() {

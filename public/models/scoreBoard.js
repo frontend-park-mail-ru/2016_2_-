@@ -9,7 +9,6 @@
     constructor(options) {
       super(options);
       this.scores = new Collection({
-        //models: options.models || [],
         comparator: (a, b) => {
           if (a.score < b.score) {
             return 1;

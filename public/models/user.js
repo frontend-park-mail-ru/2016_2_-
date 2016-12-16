@@ -1,6 +1,4 @@
 (function () {
-
-
   const Model = window.Model;
 
   class User extends Model {
@@ -14,39 +12,31 @@
     }
 
     save() {
-      let result = false;
-      this.send('POST', this.attributes, this.url)
+      return this.send('POST', this.attributes, this.url)
         .then(data => JSON.parse(data))
         .then(data => {
           this.attributes.id = data.id;
-          console.log(this);
-          result = true;
         })
         .catch(error => console.log(error));
-      return result;
     }
 
     remove() {
-      this.send('DELETE', {id: this.attributes.id}, this.url)
+      this.send('DELETE', null, '${this.url}/${this.attributes.id}')
         .then(data => console.log(data))
         .catch(error => console.log(error));
     }
 
     fetch() {
-      let result = false;
-      this.send('GET', null, this.url + '?id=' + this.attributes.id)
+      return this.send('GET', null, '${this.url}/${this.attributes.id}')
         .then(data => JSON.parse(data))
         .then(attrs => {
           this.attributes = attrs;
-          result = true;
         })
         .catch(error => console.log(error));
-      return result;
-      //todo написать загрузку юзера по имени и паролю
     }
 
     update() {
-      this.send('PUT', this.attributes, this.url)
+      this.send('PUT', this.attributes, '${this.url}/${this.attributes.id}')
         .then(data => JSON.parse(data))
         .then(id => {
           this.attributes.id = id;
