@@ -18,11 +18,6 @@
       this._el.innerHTML = '<h1>SCORE BOARD PAGE!</h1>';
     }
 
-
-
-    /*init(options = {}) {
-     // TODO: дописать реализацию
-     }*/
   }
 
 

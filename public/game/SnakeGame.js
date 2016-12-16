@@ -45,17 +45,18 @@
         isStopped = this.isStopped.bind(this),
         exec = this.exec.bind(this);
 
+      let fps = 23
+
       function step() {
-        var now = Date.now(),
-          dt = now - (time || now);
-
-        time = now;
-
-        if (!isStopped()) {
-          requestAnimationFrame(step);
-        }
-
-        exec(dt);
+        setTimeout(function () {
+          var now = Date.now(),
+            dt = now - (time || now);
+          time = now;
+          if (!isStopped()) {
+            requestAnimationFrame(step);
+          }
+          exec(dt);
+        }, 1000 / fps);
       }
 
       step();
@@ -75,7 +76,6 @@
 
       this.Snake.render();
       this.Mouse.render();
-
     }
 
     collectGarbage() {

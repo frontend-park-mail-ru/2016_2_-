@@ -66,7 +66,6 @@
     _installControls() {
       let {controls = []} = this.data;
       controls.forEach(data => {
-        //data.class = '${this.data.class}__${this.text}'; why dont work???
         data.attrs.class = this.data.class + '_controls_' + data.text;
         let control = new Button(data);
         console.log(control);

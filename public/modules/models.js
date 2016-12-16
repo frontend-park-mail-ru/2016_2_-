@@ -31,7 +31,6 @@
     }
 
     send(method, data, url) {
-      //const url = this.url(data.id);
       return new Promise((resolve, reject) => {
         let xhr = new XMLHttpRequest();
         xhr.open(method, url, true);

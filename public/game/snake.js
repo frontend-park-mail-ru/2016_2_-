@@ -59,8 +59,8 @@
 
       let cellSize = this.game.cellSize;
       //проверка на выход за границы
-      if ((newSnakeElement.x < 1 || newSnakeElement.x > this.game.canvasWidth - cellSize)
-        || (newSnakeElement.y < 1 || newSnakeElement.y > this.game.canvasHeight - cellSize - 1)) {
+      if ((newSnakeElement.x < 0 || newSnakeElement.x > this.game.canvasWidth - cellSize)
+        || (newSnakeElement.y < 0 || newSnakeElement.y > this.game.canvasHeight - cellSize - 1)) {
         this.game.setStatus(this.game.STATUS.GAMEOVER);
         return;
       }
@@ -85,7 +85,6 @@
           this.game.Mouse.create();
         }
       }
-      //console.log(this.body[0].x,this.body[0].y)
       return 0;
     }
 
@@ -97,7 +96,6 @@
         } else {
           this.game.context.fillStyle = this.game.snakeColor;
         }
-        //console.log('snake_render: ', this.body[i].x, 'cellSize:', this.game.cellSize);
         this.game.context.fillRect(this.body[i].x - this.game.cellSize / 2,
           this.body[i].y + this.game.cellSize / 2,
           this.game.cellSize,

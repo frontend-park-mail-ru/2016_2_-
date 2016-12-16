@@ -49,15 +49,13 @@
           this.session = new Session(this.user, {});
           console.log(this.session);
           this.session.login()
-            .then(() => {
-              this.session.is_authenticated()
-                .then(result => {
+            .then((result) => {
                   if (result) {
                     this.router.go('/menu');
-                  } else
+                  } else {
                     alert('не авторизованы');
-                })
-            });
+                  }
+                });
         } else {
           console.log('fail registration');
         }

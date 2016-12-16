@@ -1,10 +1,4 @@
 (function () {
-/*
- password
- login
- email
- */
-
   const Model = window.Model;
 
   class User extends Model {
@@ -27,13 +21,13 @@
     }
 
     remove() {
-      this.send('DELETE', null, this.url + '/' + this.attributes.id.toString())
+      this.send('DELETE', null, '${this.url}/${this.attributes.id}')
         .then(data => console.log(data))
         .catch(error => console.log(error));
     }
 
     fetch() {
-      return this.send('GET', null, this.url + '/' + this.attributes.id.toString())
+      return this.send('GET', null, '${this.url}/${this.attributes.id}')
         .then(data => JSON.parse(data))
         .then(attrs => {
           this.attributes = attrs;
@@ -42,7 +36,7 @@
     }
 
     update() {
-      this.send('PUT', this.attributes, this.url + '/' + this.attributes.id.toString())
+      this.send('PUT', this.attributes, '${this.url}/${this.attributes.id}')
         .then(data => JSON.parse(data))
         .then(id => {
           this.attributes.id = id;

@@ -55,6 +55,7 @@
         })
         .then(data => {
           this.user.attributes.id = data.userId;
+          return true;
         })
         .catch(response => console.log(response));
     }

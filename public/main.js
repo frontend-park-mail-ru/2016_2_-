@@ -62,17 +62,5 @@
       .addRoute('/signup', SignupView)
       .addRoute('/', LoginView)
       .start();
-
-    /* const session = window.SessionModel;
-     const user = window.UserModel;
-     let u = new user({
-     login: 'u',
-     password: '1'
-     });
-     let s = new session(u);
-     s.login();
-     s.is_authenticated()
-     .then(result => console.log(result + 'AAAA'))
-     .catch(err => console.log(err)); */
   }
 })();

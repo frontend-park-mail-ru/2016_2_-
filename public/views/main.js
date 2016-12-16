@@ -22,7 +22,6 @@
       this._createComponents();
       this._createControls();
       this._initListeners();
-      //this._el.innerHTML = '<h1>MEGA MAIN PAGE!</h1>';
     }
 
     _initListeners() {
@@ -39,8 +38,6 @@
             }
           })
           .catch(error => console.log(error));
-
-        //this.router.go('/game1');
       });
       this._component.addEventListenerOnChild('click', 'mainpage__buttons__singlegame', event => {
         event.preventDefault();
@@ -98,9 +95,6 @@
     }
 
     _init() {
-
-
-     // this._component.addEventListenerOnChild('click', this.class + )
     }
   }
 
