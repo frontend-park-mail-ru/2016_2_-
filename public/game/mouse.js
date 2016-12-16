@@ -3,9 +3,6 @@
 
   class Mouse {
 
-    /**
-     * Конструктор класса Pane
-     */
     constructor(game) {
       // get data from game
       this.game = game;

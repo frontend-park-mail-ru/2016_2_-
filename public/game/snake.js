@@ -3,9 +3,6 @@
 
   class Snake {
 
-    /**
-     * Дефолтный конструктор змейки
-     */
     constructor({game, x, y}) {
       this.game = game;
 
@@ -31,16 +28,12 @@
       this.setRoute('UP');
     }
 
-    /**
-     * Устанавливаем направление движение
-     */
+
     setRoute(value) {
       this.route = this.ROUTE[value];
     }
 
-    /**
-     * Обноваление положения змейки
-     */
+
     update() {
       let newSnakeElement = {
         x: this.body[0].x,

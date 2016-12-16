@@ -7,9 +7,6 @@
 
   class SnakeGame {
 
-    /**
-     * Конструктор класса Form
-     */
     constructor({ctx, width, height}) {
       this.context = ctx;
       this.cellSize = width / 100;
@@ -33,9 +30,6 @@
       this.key = new KeyMaster();
     }
 
-    /**
-     * Начало новой игры
-     */
     start() {
       this._stopped = false;
       this.key.init();
@@ -46,9 +40,6 @@
       return this._stopped;
     }
 
-    /**
-     * Начинаем крутить петлю
-     */
     startLoop() {
       let time,
         isStopped = this.isStopped.bind(this),
@@ -64,7 +55,6 @@
           requestAnimationFrame(step);
         }
 
-        while ()
         exec(dt);
       }
 
@@ -76,10 +66,6 @@
       this.context.fillRect(0, 0, this.canvasWidth, this.canvasHeight);
     }
 
-    /**
-     * Обрабатываем текущий момент
-     * @param  {number} dt
-     */
     exec(dt) {
       let keys = this.keys;
       this.clear();
