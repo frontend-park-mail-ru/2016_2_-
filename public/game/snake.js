@@ -22,9 +22,9 @@
       var defaultPosY = Math.ceil(this.game.canvasHeight / 2);
 
       this.body = [
-        {x: defaultPosX, y: defaultPosY - 1},
+        {x: defaultPosX, y: defaultPosY - this.game.cellSize},
         {x: defaultPosX, y: defaultPosY},
-        {x: defaultPosX, y: defaultPosY + 1}
+        {x: defaultPosX, y: defaultPosY + this.game.cellSize}
       ];
 
       // set route
@@ -47,13 +47,13 @@
         y: this.body[0].y
       };
       if (this.isRoute('UP')) {
-        newSnakeElement.y -= 1;//если вверх, то новый элемент появится выше первого
+        newSnakeElement.y -= this.game.cellSize;//если вверх, то новый элемент появится выше первого
       } else if (this.isRoute('DOWN')) {
-        newSnakeElement.y += 1;
+        newSnakeElement.y += this.game.cellSize;
       } else if (this.isRoute('LEFT')) {
-        newSnakeElement.x -= 1;
+        newSnakeElement.x -= this.game.cellSize;
       } else if (this.isRoute('RIGHT')) {
-        newSnakeElement.x += 1;
+        newSnakeElement.x += this.game.cellSize;
       }
 
       //проверка на самопересечение
@@ -81,7 +81,7 @@
       let distance = Math.sqrt((newSnakeElement.x - mouse.x) * (newSnakeElement.x - mouse.x) +
         (newSnakeElement.y - mouse.y) * (newSnakeElement.y - mouse.y));
       //console.log(distance);
-      if (distance < this.game.cellSize * 2 / 4 + 0.25) {
+      if (distance < this.game.cellSize) {
         console.log(distance);
         console.log('mouse in range');
         let isWin = this.addElement();
@@ -125,13 +125,13 @@
       var y_diff = this.body[last_index].y - this.body[last_index - 1].y;
 
       if (x_diff > 0) {
-        newSnakeElement.x += 1;
+        newSnakeElement.x += this.game.cellSize;
       } else if (x_diff < 0) {
-        newSnakeElement.x -= 1;
+        newSnakeElement.x -= this.game.cellSize;
       } else if (y_diff > 0) {
-        newSnakeElement.y += 1;
+        newSnakeElement.y += this.game.cellSize;
       } else if (y_diff < 0) {
-        newSnakeElement.y -= 1;
+        newSnakeElement.y -= this.game.cellSize;
       }
 
       // push in array

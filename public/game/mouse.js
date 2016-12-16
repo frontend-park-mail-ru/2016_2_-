@@ -18,7 +18,7 @@
     render() {
       if (this.pos.x != -1 && this.pos.y != -1) {
         this.game.context.beginPath();
-        this.game.context.fillStyle = 'black';
+        this.game.context.fillStyle = '#EEC900';
         this.game.context.arc(this.pos.x + this.game.cellSize / 2, this.pos.y + this.game.cellSize / 2, this.game.cellSize / 2 - 2, 0, Math.PI * 2);
         this.game.context.fill();
         this.game.context.closePath();
@@ -27,8 +27,8 @@
 
     getRandomCoord() {
       return {
-        x: Math.floor(Math.random() * this.game.canvasWidth),
-        y: Math.floor(Math.random() * this.game.canvasHeight)
+        x: Math.floor(Math.random() * (this.game.canvasWidth - 5)),
+        y: Math.floor(Math.random() * (this.game.canvasHeight - 5))
       };
     }
 

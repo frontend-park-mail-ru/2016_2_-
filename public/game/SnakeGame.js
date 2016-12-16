@@ -12,12 +12,12 @@
      */
     constructor({ctx, width, height}) {
       this.context = ctx;
-      this.cellSize = 8;
+      this.cellSize = width / 100;
       this.canvasWidth = width;
       this.canvasHeight = height;
-      this.backgroundColor = 'white';
-      this.snakeColor = 'black';
-      this.snakeHeadColor = 'black';
+      this.backgroundColor = 'black';
+      this.snakeColor = '#00BFFF';
+      this.snakeHeadColor = '#00F5FF';
       this.score = 0;
       this.status = 0;
       this.context.fillStyle = this.backgroundColor;
@@ -28,7 +28,7 @@
         GAMEWIN: 3,
         PAUSE: 4
       };
-      this.Snake = new Snake({game: this, x: width / 2, y: height / 2});
+      this.Snake = new Snake({game: this, x: width, y: height});
       this.Mouse = new Mouse(this);
       this.key = new KeyMaster();
     }
@@ -64,6 +64,7 @@
           requestAnimationFrame(step);
         }
 
+        while ()
         exec(dt);
       }
 
