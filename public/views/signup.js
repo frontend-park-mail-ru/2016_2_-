@@ -85,7 +85,7 @@
                 console.log(this.session);
                 this.session.login()
                   .then(() => {
-                    this.router.go('/game');
+                    this.router.go('/menu');
                   });
               } else {
                 console.log('fail registration');

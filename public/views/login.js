@@ -53,7 +53,7 @@
               this.session.is_authenticated()
                 .then(result => {
                   if (result) {
-                    this.router.go('/game');
+                    this.router.go('/menu');
                   } else
                     alert('не авторизованы');
                 })

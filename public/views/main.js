@@ -42,9 +42,9 @@
 
         //this.router.go('/game1');
       });
-      this._component.addEventListenerOnChild('click', 'mainpage__buttons__quickgame', event => {
+      this._component.addEventListenerOnChild('click', 'mainpage__buttons__singlegame', event => {
         event.preventDefault();
-        this.router.go('/game1');
+        this.router.go('/sgame');
       });
     }
 
@@ -54,7 +54,7 @@
           text: 'Single Player',
           attrs: {
             type: 'button',
-            name: 'quickgame'
+            name: 'singlegame'
           }
         },
         {
