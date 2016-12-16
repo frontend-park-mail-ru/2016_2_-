@@ -1,8 +1,12 @@
 // наименование для нашего хранилища кэша
-const CACHE_NAME = 'app_serviceworker_v_1';
+const CACHE_NAME = 'app_serviceworker_v_2';
 // ссылки на кэшируемые файлы
 const cacheUrls = [
   '/',
+  '/game',
+  '/sgame',
+  '/menu',
+
   '/css/milligram.min.css',
   '/css/main.css',
   '/components/button/button.css',
@@ -28,12 +32,19 @@ const cacheUrls = [
   '/components/input/input.js',
 
 
+  '/game/keymaster.js',
+  '/game/mouse.js',
+  '/game/snake.js',
+  '/game/SnakeGame.js',
+
+
   '/views/main.js',
   '/views/game.js',
   '/views/scoreBoard.js',
   '/views/login.js',
   '/views/signup.js',
   '/views/mainFrame.js',
+  '/views/singlegame.js',
 
   '/main.js'
 ];

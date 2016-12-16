@@ -16,8 +16,8 @@
 
     _initCanvas() {
       this.canvas = this._el.querySelector('.js-canvas');
-      this.canvas.width = this._el.clientWidth + '';
-      this.canvas.height = this._el.clientWidth + '';
+      this.canvas.width = this._el.clientWidth/2 + '';
+      this.canvas.height = this._el.clientWidth/2 + '';
       this.canvas.style.border = '1px solid #444';
     }
 

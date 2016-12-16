@@ -64,9 +64,10 @@
         }
       }
 
-
+      let cellSize = this.game.cellSize;
       //проверка на выход за границы
-      if ((newSnakeElement.x < 0 || newSnakeElement.x > this.game.sceneWidth - 1) || (newSnakeElement.y < 0 || newSnakeElement.y > this.game.sceneHeight - 1)) {
+      if ((newSnakeElement.x < 1 || newSnakeElement.x > this.game.canvasWidth - cellSize)
+        || (newSnakeElement.y < 1 || newSnakeElement.y > this.game.canvasHeight - cellSize - 1)) {
         this.game.setStatus(this.game.STATUS.GAMEOVER);
         return;
       }
@@ -79,7 +80,8 @@
       let mouse = this.game.Mouse.pos;
       let distance = Math.sqrt((newSnakeElement.x - mouse.x) * (newSnakeElement.x - mouse.x) +
         (newSnakeElement.y - mouse.y) * (newSnakeElement.y - mouse.y));
-      if (distance < this.game.cellSize * 3 / 4) {
+      //console.log(distance);
+      if (distance < this.game.cellSize * 2 / 4 + 0.25) {
         console.log(distance);
         console.log('mouse in range');
         let isWin = this.addElement();
@@ -103,8 +105,8 @@
           this.game.context.fillStyle = this.game.snakeColor;
         }
         //console.log('snake_render: ', this.body[i].x, 'cellSize:', this.game.cellSize);
-        this.game.context.fillRect(this.body[i].x - this.game.cellSize/2,
-          this.body[i].y + this.game.cellSize/2,
+        this.game.context.fillRect(this.body[i].x - this.game.cellSize / 2,
+          this.body[i].y + this.game.cellSize / 2,
           this.game.cellSize,
           this.game.cellSize);
       }

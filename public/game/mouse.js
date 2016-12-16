@@ -11,10 +11,7 @@
       this.game = game;
 
       // apple object
-      this.pos = {
-        x: 300,
-        y: 300
-      };
+      this.pos = this.getRandomCoord();
     }
 
 
@@ -54,6 +51,7 @@
       }
 
       // update
+      console.log(newPos.x, newPos.y);
       this.pos.x = newPos.x;
       this.pos.y = newPos.y;
     }
@@ -63,8 +61,6 @@
       this.pos.x = -1;
       this.pos.y = -1;
     }
-
-
   }
 
   //export

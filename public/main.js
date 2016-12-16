@@ -6,6 +6,7 @@
   const ScoreBoardView = window.ScoreBoardView;
   const SignupView = window.SignupView;
   const SingleGameView = window.SingleGameView;
+  const MainView = window.MainView;
 
   const Model = window.Model;
 
@@ -62,16 +63,16 @@
       .addRoute('/', LoginView)
       .start();
 
-   /* const session = window.SessionModel;
-    const user = window.UserModel;
-    let u = new user({
-      login: 'u',
-      password: '1'
-    });
-    let s = new session(u);
-    s.login();
-    s.is_authenticated()
-      .then(result => console.log(result + 'AAAA'))
-      .catch(err => console.log(err)); */
+    /* const session = window.SessionModel;
+     const user = window.UserModel;
+     let u = new user({
+     login: 'u',
+     password: '1'
+     });
+     let s = new session(u);
+     s.login();
+     s.is_authenticated()
+     .then(result => console.log(result + 'AAAA'))
+     .catch(err => console.log(err)); */
   }
 })();
